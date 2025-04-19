@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    </div>
+    <div class="form-group">
+        <label for="username">First Name:</label>
+        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    </div>
+    <div class="form-group">
+        <label for="username">Last Name:</label>
+        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{ user.email }}" required>
+    </div>
+    <div class="form-group">
+        <label for="username">Codechef ID:</label>
+        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    </div>
+    <div class="form-group">
+        <label for="username">Codeforces ID:</label>
+        <input type="text" name="username" id="username" value="{{ user.username }}" required>
+    </form>
+{%endblock content%}

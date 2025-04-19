@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireSolve</title>
+    <link rel="icon" type="image/png" href="{% static 'logos/title-image.png' %}"/>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'landing.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Pacifico&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <img class="logo-img" src="{% static 'logos/logo-1-transparent.png' %}" alt="FireSolve">
+    </div>
+    {%block buttons%}
+    <div class="buttons">
+      <a href="{% url 'signup' %}"><span class="get-started">Signup</span></a>
+      <a href="{% url 'login' %}"><span class="get-started">Login</span></a>
+    </div>
+    {%endblock buttons%}
+  </div>
+<div class="content">
+{% block content %}
+{% endblock content %}
+</div>
+<div class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="{% static 'logos/logo-1-transparent.png' %}" alt="FireSolve Logo">
+        </div>
+        <div class="footer-links">
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+    <div class="footer-text">
+        &copy; 2025 FireSolve. All rights reserved.
+    </div>
+<script>
+  // Function to adjust slider image sizes based on screen width
+  function adjustSliderSizes() {
+    const sliderContainer = document.querySelector('.slider-container');
+    if (!sliderContainer) return;
+    
+    const width = window.innerWidth;
+    
+    if (width <= 768) {
+      // Mobile sizes
+      sliderContainer.style.setProperty('--height', '80px');
+      sliderContainer.style.setProperty('--width', '80px');
+    } else if (width <= 1024) {
+      // Tablet sizes
+      sliderContainer.style.setProperty('--height', '100px');
+      sliderContainer.style.setProperty('--width', '100px');
+    } else {
+      // Desktop sizes
+      sliderContainer.style.setProperty('--height', '120px');
+      sliderContainer.style.setProperty('--width', '120px');
+    }
+  }
+  
+  // Run on page load
+  window.addEventListener('load', adjustSliderSizes);
+  
+  // Run on window resize
+  window.addEventListener('resize', adjustSliderSizes);
+</script>
+</body>
+</html>

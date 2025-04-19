@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'signup' %}" method="post" class="signin-form">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    {% csrf_token %}
+    <div class="signin-container">
+        <div class="signin-title">Sign Up</div>
+        <div class="signin-text">Welcome to FireSolve!</div>
+        <input type="text" name="f_name" placeholder="First Name" required>
+        <input type="text" name="l_name" placeholder="Last Name" required>
+
+        <input type="text" name="username" placeholder="Username" id="username" required>
+        <div id="username-alert-1" class="alert">
+            Username should be between 3 and 20 characters long and can only contain letters, numbers, and underscores.
+        </div>
+        <div id="username-alert-2" class="alert" style="background-color: #f1ce65; color: #000;">Username already exists</div>
+
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        <div id="password-alert-1" class="alert">
+            Password must be at least 8 characters long.
+        </div>
+        <button type="submit" class="get-started" id="submit">Signup</button>
+        <div class="signup-link">Have an account already? <a href="{% url 'login' %}">Log In</a></div>
+    </div>
+</form>
+<script src="{%static 'login.js'%}"></script>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="first-view">
+    <div class="slider-container" style="--height: 120px; --width: 120px; --count: 8;">
+        {% for j in range0to3 %}
+            {% if j|divisibleby:2 %}
+                <div class="slider">
+            {% else %}
+                <div class="slider" reverse="true">
+            {% endif %}
+                <div class="list">
+                    {% for i in range1to9 %}
+                        <div class="item" style="--position: {{i}}">
+                            <img src="../static/slider-images/img0{{i}}.png" alt="landing0000001">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="first-view-text">
+        <h1>Welcome to FireSolve</h1>
+        <p>FireSolve is a go to platform for programmers that want to upskill by solving one problem daily from the top sites like LeetCode, GeeksforGeeks, Codechef and Codeforces.</p>
+        <span class="get-started main-button">Get-Started</span>
+    </div>
+</div>
+{% comment %} ------------------------------- FEATURES ----------------------------- {% endcomment %}
+<div class="second-view">
+    
+    <div class="features">
+    
+        <div class="title"> Features </div>
+        <div class="containers">
+            <div class="container">
+                <img src="../static/feature-icons/trending-up.svg" class="feature-img" alt="feature1" />
+                <div class="temp">
+                    <div class="container-title">Difficulty Progression</div>
+                    <div class="container-text">Problems start easy at the beginning of the month and scale up by the end, allowing smooth skill growth.</div>
+                </div>
+            </div>
+            <div class="container">
+                <img src="../static/feature-icons/flame.svg" class="feature-img" alt="feature2">
+                <div class="temp">
+                <div class="container-title">Streak system</div>
+                <div class="container-text">Track your daily consistency. Solve all POTDs to maintain your streak — one miss resets the count.</div>
+                </div>
+            </div>
+            <div class="container">
+                <img src="../static/feature-icons/hand-point-up.svg" class="feature-img" alt="feature3">
+                <div class="temp">
+                <div class="container-title">Unified POTD Tracker</div>
+                <div class="container-text">Aggregate POTDs from all platforms - all in one dashboard. Save time and focus on solving.</div>
+                </div>
+            </div>
+            <div class="container">
+                <img src="../static/feature-icons/bar-chart-2.svg" class="feature-img" alt="feature4">
+                <div class="temp">
+                <div class="container-title">Competitive Leaderboard</div>
+                <div class="container-text">Track your rank based on streak length, number of problems solved, and speed of submissions.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
