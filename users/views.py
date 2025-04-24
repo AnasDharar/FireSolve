@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User 
+# from .models import UserProfile
 # Create your views here.
 def profile_view(request, username):
     try:
@@ -17,8 +18,9 @@ def profile_view(request, username):
         'is_owner': is_owner,
         # Add more fields as needed
     }
-    print(user_data)
+    print(is_owner)
     print(user)
+    print(request.user)
     return render(request, '../templates/profile.html', {'user': user_data})
 
 def edit_profile_view(request, username):

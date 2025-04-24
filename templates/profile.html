@@ -9,7 +9,8 @@
 <p>Email: {{user.email}}</p>
 <p>Rating: (rating)</p>
 <p>Recent submission: (recent submission)</p>
-{% if is_owner %}
-    <a href="{% url 'edit_profile' username=profile_user.username %}" class="get-started">Edit Profile</a>
+{% if user.is_owner %}
+    <a href="{% url 'edit_profile' username=user.username %}" class="get-started">Edit Profile</a>
+    <p>YES, this is you!</p>
 {% endif %}
 {%endblock content%}

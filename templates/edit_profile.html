@@ -1,6 +1,10 @@
 {%extends 'base.html'%}
 {%block content%}
-
+<style>
+    label{
+        color: aliceblue;
+    }
+</style>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
