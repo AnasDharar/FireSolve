@@ -7,10 +7,14 @@
 </style>
 <h1>Username: {{user.username}}</h1>
 <p>Email: {{user.email}}</p>
+<p>First Name: {{user.first_name}}</p>
+<p>Last Name: {{user.last_name}}</p>
+<p>Codechef: {{user.codechef_id}}</p>
+<p>Codeforces: {{user.codeforces_id}}</p>
 <p>Rating: (rating)</p>
 <p>Recent submission: (recent submission)</p>
 {% if user.is_owner %}
-    <a href="{% url 'edit_profile' username=user.username %}" class="get-started">Edit Profile</a>
+    <a href="{% url 'edit' username=user.username %}" class="get-started">Edit Profile</a>
     <p>YES, this is you!</p>
 {% endif %}
 {%endblock content%}

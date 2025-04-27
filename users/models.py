@@ -16,13 +16,13 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     
     # Graduation Info
-    year_of_graduation = models.IntegerField()
-    branch = models.CharField(max_length=100)
-    degree = models.CharField(max_length=100)
-    college_name = models.CharField(max_length=255)
+    year_of_graduation = models.IntegerField(null=True, blank=True)
+    branch = models.CharField(max_length=100,null=True, blank=True)
+    degree = models.CharField(max_length=100,null=True, blank=True)
+    college_name = models.CharField(max_length=255,null=True, blank=True)
     
     # Streak Info
-    current_streak = models.IntegerField(default=0)
+    current_streak = models.IntegerField(default=0,null=True, blank=True)
     
     # Platform IDs
     codechef_id = models.CharField(max_length=100, blank=True, null=True)
