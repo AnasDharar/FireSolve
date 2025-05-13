@@ -1,10 +1,40 @@
 {%extends 'base.html' %}
-{%block buttons%}
-<div class="buttons">
-    <a href="{% url 'profile' request.user.username %}"><span class="get-started">Profile</span></a>
-</div>
-{%endblock buttons%}
-
 {%block content%}
+<link rel="stylesheet" href="../static/index.css">
+<div class="main-container">
+    <div class="partone">
+        <div class="platform">
+            <img src="../static/slider-images/img01.png" alt="" class="platform-logo">
+            <div class="text-box">
+                <div class="title">Codechef</div>
+                <div class="get-started butt">Solve</div>
+            </div>
+            <div class="streak-box">100 🔥</div>
+        </div>
 
+        <div class="platform">
+            <img src="../static/slider-images/img03.png" alt="" class="platform-logo">
+            <div class="text-box">
+                <div class="title">Codeforces</div>
+                <div class="get-started butt">Solve</div>
+            </div>
+            <div class="streak-box">43 🔥</div>
+        </div>
+
+        <div class="platform">
+            <img src="../static/slider-images/img02.png" alt="" class="platform-logo">
+            <div class="text-box">
+                <div class="title">Leetcode</div>
+                <div class="get-started butt">Solve</div>
+            </div>
+            <div class="streak-box">01 🔥</div>
+        </div>
+        <!-- NOTES TO MYSELF -->
+         <!-- MAKE THIS SHIR WORK ASAP  -->
+    </div>
+    <div class="parttwo">
+        <!-- THIS SECTION WILL SHOW THE OVERALL STREAK COUNT AND HEATMAP -->
+         <!-- FOR FIRST RELEASE, KEEP OVERALL COUNT ONLY - IMPLEMENT HEATMAP LATER -->
+    </div>
+</div>
 {%endblock content%}

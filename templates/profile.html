@@ -1,4 +1,12 @@
 {%extends 'base.html'%}
+<!-- {%block buttons%}
+<div class="buttons">
+    <a href="{% url 'profile' request.user.username %}"><span class="get-started">Profile</span></a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}"><span class="get-started">Logout</span></a>
+    {% else %}
+        <a href="{% url 'login' %}"><span class="get-started">Login</span></a>
+    {% endif %} -->
 {%block content%}
 <style>
     *{
