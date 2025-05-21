@@ -27,7 +27,6 @@
     <a href="{% url 'profile' request.user.username %}"><span class="get-started">Profile</span></a>
         <a href="{% url 'logout' %}"><span class="get-started">Logout</span></a>
     {% else %}
-        <a href="{% url 'login' %}"><span class="get-started">Login</span></a>
         <div class="buttons">
           <a href="{% url 'signup' %}"><span class="get-started">Signup</span></a>
           <a href="{% url 'login' %}"><span class="get-started">Login</span></a>

@@ -1,20 +1,34 @@
 .main-container{
     display: flex;
+    flex-direction: column;
     height: 100vh;
     color: aliceblue;
+}
+.parts{
+    display: flex;
+}
+.intro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+    border: 1px solid red;
+    /* height: 35vh; */
+    font-size: 2rem;
 }
 .partone{
     flex: 6;
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    margin: 1rem;
+    /* border: 1px solid red; */
 }
 .parttwo{
     flex: 4;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 }
 .platform{
     display: flex;
@@ -42,6 +56,7 @@
 }
 .streak-box{
     font-size: 1.5rem;
+    margin-left: auto;
 }
 .butt{
     margin: 0;

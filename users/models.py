@@ -4,7 +4,7 @@ from PIL import Image  # For the profile picture
 
 class UserProfile(models.Model):
     # ForeignKey to the default User model
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE) #This is named user_id in database
     
     # Basic Info
     first_name = models.CharField(max_length=50)

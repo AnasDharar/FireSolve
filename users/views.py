@@ -23,9 +23,9 @@ def profile_view(request, username):
         # Add more fields as needed
     }
     print(is_owner)
-    print(user)
-    print(request.user)
-    return render(request, '../templates/profile.html', {'user': user_data})
+    print(user) #the user whose profile is being checked
+    print(request.user) #the user who is checking the profile
+    return render(request, '../templates/profile.html', {'user_data': user_data})
 
 def edit_profile_view(request, username):
     try:
