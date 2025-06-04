@@ -99,63 +99,69 @@ a {
 }
 
 
-.footer{
-    background-color: #242424;
-    color: #ffffff;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.footer {
+  background-color: #242424;
+  color: #ffffff;
+  padding: 1.5rem 1rem;  /* increased vertical padding for touch comfort */
+  display: flex;
+  flex-direction: column; /* stack vertically on mobile */
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem; /* space between elements */
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
+.footer .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 960px; /* max width for bigger screens */
+  padding: 0 1rem;
+  box-sizing: border-box;
+  height: auto; /* remove fixed height */
 }
-.footer .footer-content{
-    /* border: 1px solid #ffffff; */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    width: calc(100% - 4rem); /* Account for the padding */
-    height: 10vh;
-}
-.footer .footer-logo img{
-    height: 2.5rem;
-    width: auto;
-    margin-right: 1vw;
-}
-.footer .footer-links{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-right: 1vw;
-    height: 100%;
-    width: auto;
 
+.footer .footer-logo img {
+  height: 2.5rem;
+  width: auto;
+  margin-right: 1vw;
 }
+
+.footer .footer-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  height: auto;
+  width: auto;
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
-    .navbar {
-        height: 8vh;
-        padding: 0 0.5rem;
-    }
-    
-    .navbar .logo {
-        font-size: 4vw;
-    }
-    
-    .logo-img {
-        height: 70%;
-        max-height: 40px;
-    }
-    
-    .get-started {
-        height: 2rem; 
-        font-size: 0.875rem;
-        line-height: 2rem;
-        padding: 0 0.75rem;
-        margin: 0 0.25rem;
-    }
-    
-    .buttons {
-        width: auto;
-    }
+  .footer {
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .footer .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    height: auto;
+  }
+
+  .footer .footer-links {
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .footer .footer-logo img {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
 }

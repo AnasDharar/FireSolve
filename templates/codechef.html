@@ -1,47 +1,17 @@
-{%extends base.html%}
+{%extends 'base.html'%}
 {%block content%}
-<link rel="stylesheet" href="../static/index.css">
-<link rel="stylesheet" href="../static/hero.css">
 <div class="main-container">
-    <section class="hero">
-  <div class="cd-container cd-max-width-adaptive-sm">
-    <h1 style="color: aliceblue;">Welcome {{user.username}}!</h1>
-    <p class="cd-line-height-lg cd-margin-bottom-sm">Continue making streaks!</div>
-</section>
-    <div class="parts">
-    <div class="partone">
-        <div class="platform">
-            <img src="../static/slider-images/img01.png" alt="" class="platform-logo">
-            <div class="text-box">
-                <div class="title">Codechef</div>
-                <div class="get-started butt">Solve</div>
+    <div class="hero-box">
+        <div class="hero-title">Lets solve codechef potd!</div>
+
+        <div class="curr-box">
+            <div class="curr-box-title">Todays Problem</div>
+            <div class="curr-box-problem">
+                <div class="problem-name">Problem Name</div>
+                <div class="problem-link"><a href="https://www.codechef.com/problems/PROBLEM_NAME" target="_blank">Solve Problem</a></div>
             </div>
-            <div class="streak-box">100 🔥</div>
         </div>
 
-        <div class="platform">
-            <img src="../static/slider-images/img03.png" alt="" class="platform-logo">
-            <div class="text-box">
-                <div class="title">Codeforces</div>
-                <div class="get-started butt">Solve</div>
-            </div>
-            <div class="streak-box">43 🔥</div>
-        </div>
-
-        <div class="platform">
-            <img src="../static/slider-images/img02.png" alt="" class="platform-logo">
-            <div class="text-box">
-                <div class="title">Leetcode</div>
-                <div class="get-started butt">Solve</div>
-            </div>
-            <div class="streak-box">01 🔥</div>
-        </div>
-        <!-- NOTES TO MYSELF -->
-         <!-- MAKE THIS SHIR WORK ASAP  -->
-    </div>
-    <div class="parttwo">
-        <!-- THIS SECTION WILL SHOW THE CODECHEF STREAK COUNT AND HEATMAP -->
-    </div>
     </div>
 </div>
 {%endblock content%}

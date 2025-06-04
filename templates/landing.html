@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="first-view">
-    <div class="slider-container" style="--height: 120px; --width: 120px; --count: 8;">
+    <div class="slider-container">
         {% for j in range0to3 %}
             {% if j|divisibleby:2 %}
                 <div class="slider">
@@ -63,4 +63,31 @@
         </div>
     </div>
 </div>
+
+<div class="how-it-works">
+    <div class="how-title">How It Works</div>
+    <div class="steps-container">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-text">Pick a platform</div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-text">Solve its problem of the day</div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-text">Submit the solution</div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-text">Track progress</div>
+        </div>
+        <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-text">Come back tomorrow and maintain the streak</div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
