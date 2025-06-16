@@ -1,6 +1,6 @@
 *{
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
     box-sizing: border-box;
     font-family: 'Gabarito', cursive;
     color: #fff;
@@ -15,25 +15,19 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.566);
     background-color: #242424;
 }
-.signin-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.signin-container .signin-title{
+/* .signin-title{
     font-size: 2rem;
     text-align: center;
     color: #fff;
     margin-bottom: 1rem;
 }
-.signin-container .signin-text{
+.signin-text{
     font-size: 1rem;
     text-align: center;
     color: #fff;
     margin-bottom: 1rem;
 }
-.signin-container input{
+input{
     min-width: 60%;
     height: 2.5rem;
     padding: 0 1rem;
@@ -44,7 +38,7 @@
     color: #242424;
     font-size: 1rem;
     font-family: 'Gabarito', cursive;
-}
+} */
 .signup-link{
     margin: 1rem;
 }
