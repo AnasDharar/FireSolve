@@ -28,7 +28,7 @@ DEBUG = config('DEBUG',default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS',cast=Csv())
 
-
+NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tailwind',
+    'theme',
 ]
 
+TAILWIND_APP_NAME = 'theme'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -77,22 +80,10 @@ WSGI_APPLICATION = 'potd.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USER'),
-#         'PASSWORD': config('DB_PASSWORD'),
-#         'HOST': config('DB_HOST'),
-#         'PORT': config('DB_PORT'),
-#     }
-# }
-
-
+DEBUG = config('DEBUG', cast=bool)
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=config('DATABASE_URL'),conn_max_age=600, ssl_require=not DEBUG,
     )
 }
 
@@ -136,6 +127,7 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    BASE_DIR / 'theme' / 'static',
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

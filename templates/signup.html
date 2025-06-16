@@ -2,29 +2,40 @@
 {% load static %}
 
 {% block content %}
-<form action="{% url 'signup' %}" method="post" class="signin-form">
-    <link rel="stylesheet" href="{% static 'login.css' %}">
-    {% csrf_token %}
-    <div class="signin-container">
-        <div class="signin-title">Sign Up</div>
-        <div class="signin-text">Welcome to FireSolve!</div>
-        <input type="text" name="f_name" placeholder="First Name" required>
-        <input type="text" name="l_name" placeholder="Last Name" required>
+<form action="{% url 'signup' %}" method="post" class="flex flex-col justify-center items-center min-h-screen bg-base-200">
+  <!-- <link rel="stylesheet" href="{% static 'login.css' %}"> -->
+  {% csrf_token %}
 
-        <input type="text" name="username" placeholder="Username" id="username" required>
-        <div id="username-alert-1" class="alert">
-            Username should be between 3 and 20 characters long and can only contain letters, numbers, and underscores.
-        </div>
-        <div id="username-alert-2" class="alert" style="background-color: #f1ce65; color: #000;">Username already exists</div>
+  <div class="w-full max-w-md bg-base-100 rounded-lg shadow-lg p-8 space-y-4">
+    <h2 class="text-3xl font-bold text-center text-white">Sign Up</h2>
+    <p class="text-center text-sm text-gray-500">Welcome to FireSolve!</p>
 
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" id="password" required>
-        <div id="password-alert-1" class="alert">
-            Password must be at least 8 characters long.
-        </div>
-        <button type="submit" class="get-started" id="submit">Signup</button>
-        <div class="signup-link">Have an account already? <a href="{% url 'login' %}">Log In</a></div>
+    <input type="text" name="f_name" placeholder="First Name" class="input input-bordered w-full" required>
+    <input type="text" name="l_name" placeholder="Last Name" class="input input-bordered w-full" required>
+    <input type="text" name="username" id="username" placeholder="Username" class="input input-bordered w-full" required>
+
+    <div id="username-alert-1" class="alert alert-warning hidden text-sm">
+      Username should be between 3 and 20 characters long and can only contain letters, numbers, and underscores.
+    </div>
+    <div id="username-alert-2" class="alert alert-warning hidden text-sm">
+      Username already exists
+    </div>
+
+    <input type="email" name="email" placeholder="Email" class="input input-bordered w-full" required>
+    <input type="password" name="password" id="password" placeholder="Password" class="input input-bordered w-full" required>
+
+    <div id="password-alert-1" class="alert alert-warning hidden text-sm">
+      Password must be at least 8 characters long.
+    </div>
+
+    <button type="submit" class="btn btn-error w-full">Sign Up</button>
+
+    <p class="text-center text-sm">
+      <span class="">Already have an account?</span>
+      <a href="{% url 'login' %}" class="link link-error">Log In</a>
+    </p>
     </div>
 </form>
-<script src="{%static 'login.js'%}"></script>
+
+<script src="{% static 'login.js' %}"></script>
 {% endblock content %}

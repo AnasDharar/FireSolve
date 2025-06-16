@@ -22,5 +22,5 @@ urlpatterns = [
     path('',include('home.urls')),
     path('accounts/',include('accounts.urls')),
     path('user/',include('users.urls')),
-    path('goto/',include('platforms.urls')),
+    path('solve/',include('platforms.urls')),
 ]
