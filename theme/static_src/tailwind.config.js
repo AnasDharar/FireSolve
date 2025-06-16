@@ -1,9 +1,10 @@
 module.exports = {
-  content: [
-    "../templates/**/*.html",
-    "../../**/templates/**/*.html",
-    "../templates/**/*.html",
-  ],
+ content: [
+  '../templates/**/*.html', // Django templates
+  '../../templates/**/*.html',
+  './templates/**/*.html',
+  './static/**/*.js',        // JS files if you use dynamic classes
+],
   safelist: [
     'mt-4', 'my-4', 'mb-4', 'ml-4', 'mr-4',
     'pt-4', 'pb-4', 'pl-4', 'pr-4', 'p-4',
