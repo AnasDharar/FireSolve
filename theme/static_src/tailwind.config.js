@@ -1,6 +1,6 @@
 module.exports = {
  content: [
-  '../templates/**/*.html', // Django templates
+  '../templates/*.html', // Django templates
   '../../templates/**/*.html',
   './templates/**/*.html',
   './static/**/*.js',        // JS files if you use dynamic classes
