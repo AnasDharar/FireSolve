@@ -53,6 +53,7 @@ def edit_profile_view(request, username):
         user_profile.codechef_id = request.POST.get('codechef_id', user_profile.codechef_id)
         user_profile.codeforces_id = request.POST.get('codeforces_id', user_profile.codeforces_id)
         user_profile.save()
+        print('User',request.user.username,'edited profile')
         user_data = {
         'username': user.username,
         'email': user_profile.email,

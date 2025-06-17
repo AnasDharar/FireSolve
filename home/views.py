@@ -6,10 +6,9 @@ from django.db import IntegrityError
 from users.models import UserProfile
 def dashboard(request):
     if request.user.is_anonymous==False:
-        print('I AM NOT ANONYMOUS')
+        print('User',request.user.username,'logged in')
         return render(request,'index.html')
     
-    print('I AM ANONYMOUS')
     return redirect('/')
     
 def landing(request):
@@ -17,6 +16,7 @@ def landing(request):
                'range0to3': range(0, 3),
                 }                 
     if request.user.is_anonymous:
+        print('Anonymous user accessing landing page')
         return render(request,'landing.html',context)
     
     return redirect('dashboard/')
