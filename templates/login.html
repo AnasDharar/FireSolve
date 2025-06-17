@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+<link href="{% static 'output.css' %}" rel="stylesheet">
+<link href="../static/output.css" rel="stylesheet">
 {% block content %}
 
 <form method="POST" action="{% url 'login' %}" class="flex items-center justify-center min-h-[80vh] bg-base-200">
   {% csrf_token %}
   <div class="flex justify-center items-center card w-full max-w-sm shadow-2xl bg-base-100 p-6 rounded-lg">
-    <h2 class="text-3xl font-bold text-center">Log In</h2>
+    <h2 class="text-3xl font-bold text-center text-amber-100">Log In</h2>
     <div class="form-control mt-4">
       <label class="label"><span class="label-text">Username</span></label>
       <input type="text" name="username" class="input input-bordered w-full" required />

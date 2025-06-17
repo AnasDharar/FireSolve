@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-
+<link href="{% static 'output.css' %}" rel="stylesheet">
 {% block content %}
-<form action="{% url 'signup' %}" method="post" class="flex flex-col justify-center items-center min-h-screen bg-base-200">
+<form action="{% url 'signup' %}" method="post" class="flex flex-col justify-center items-center min-h-screen">
   <!-- <link rel="stylesheet" href="{% static 'login.css' %}"> -->
   {% csrf_token %}
 
   <div class="w-full max-w-md bg-base-100 rounded-lg shadow-lg p-8 space-y-4">
-    <h2 class="text-3xl font-bold text-center text-white">Sign Up</h2>
+    <h2 class="text-3xl font-bold text-center">Sign Up</h2>
     <h3 class="text-yellow-500">Tailwind is working if this is yellow color. Yes, text-yellow-500 is not added in safelist</h3>
     <p class="text-center text-sm text-gray-500">Welcome to FireSolve!</p>
 

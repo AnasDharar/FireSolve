@@ -64,7 +64,6 @@
     left: 100%;
     animation: autorun 10s linear infinite;
     animation-delay: calc((10s / 8) * (var(--position) - 1));
-    border: 1px solid white;
 }
 
 .slider[reverse="true"] .list .item {
