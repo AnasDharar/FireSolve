@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="first-view">
     <div class="slider-container">
@@ -32,7 +32,58 @@
     
         <div class="title"> Features </div>
         <div class="containers">
-            <div class="container">
+            <div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
+  <figure>
+    <img
+      src="{% static 'feature-icons/bargraph.png' %}"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">Difficulty Progression</h2>
+    <p>Problems start easy at the beginning of the month and scale up by the end, allowing smooth skill growth</p>
+    <div class="card-actions justify-end">
+    </div>
+  </div>
+</div>
+<div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
+  <figure>
+    <img
+      src="{% static 'feature-icons/flame.png' %}"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">Streak system</h2>
+    <p>Track your daily consistency. Solve all POTDs to maintain your streak — one miss resets the count</p>
+    <div class="card-actions justify-end">
+    </div>
+  </div>
+</div>
+<div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
+  <figure>
+    <img
+      src="{% static 'feature-icons/potd.png' %}"
+      alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">Unified POTD Tracker</h2>
+    <p>Aggregate POTDs from all platforms - all in one dashboard. Save time and focus on solving</p>
+    <div class="card-actions justify-end">
+    </div>
+  </div>
+</div>
+<div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
+  <figure>
+    <img
+      src="{% static 'feature-icons/leaderboard.png' %}" alt="Shoes" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">Competitive Leaderboard</h2>
+    <p>Track your rank based on streak length, number of problems solved, and speed of submissions</p>
+    <div class="card-actions justify-end">
+    </div>
+  </div>
+</div>
+            <!-- <div class="container">
                 <img src="../static/feature-icons/trending-up.svg" class="feature-img" alt="feature1" />
                 <div class="temp">
                     <div class="container-title">Difficulty Progression</div>
@@ -59,7 +110,7 @@
                 <div class="container-title">Competitive Leaderboard</div>
                 <div class="container-text">Track your rank based on streak length, number of problems solved, and speed of submissions.</div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

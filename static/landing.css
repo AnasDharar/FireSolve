@@ -9,7 +9,6 @@
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
-    color: #fff;
     overflow-x: hidden;
 }
 
@@ -22,7 +21,7 @@
     width: 60%;
     text-align: center;
     min-height: 80vh;
-    background: linear-gradient(to right, transparent, rgba(36, 36, 36, 0.6), transparent);
+    background: linear-gradient(to right, transparent, rgba(75, 85, 99,0.6), transparent);
 }
 
 .main-button {
@@ -34,7 +33,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -76,6 +74,7 @@
     width: 100%;
     object-fit: cover;
     border-radius: 50%;
+    filter: brightness(0.7);  /* Makes images 30% darker */
 }
 
 @keyframes autorun {
@@ -230,7 +229,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        z-index: -1;
         width: 100%;
         gap: 1rem;
     }

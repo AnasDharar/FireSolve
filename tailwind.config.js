@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./templates/*.html",
-    "./static/**/*.js",
-    "./*/templates/**/*.html",  // for app-specific templates
+    "./templates/**/*.html",
+    "./static/**/*.{js,css}",
+    "./*/templates/**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gabarito : ['Gabarito', 'sans-serif'],
+    },
   },
   plugins: [
     require("daisyui")
