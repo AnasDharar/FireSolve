@@ -17,6 +17,7 @@ class Problem(models.Model): #this is used to store the problem details
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
     problem_id = models.CharField(max_length=50)
     title = models.CharField(max_length=255)
+    solution_url = models.URLField(blank=True, null=True)  # URL to the solution if available
 
     class Meta:
         unique_together = ('platform', 'problem_id')
