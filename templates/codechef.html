@@ -1,17 +1,62 @@
-{%extends 'base.html'%}
-{%block content%}
-<div class="main-container">
-    <div class="hero-box">
-        <div class="hero-title">Lets solve codechef potd!</div>
-
-        <div class="curr-box">
-            <div class="curr-box-title">Todays Problem</div>
-            <div class="curr-box-problem">
-                <div class="problem-name">Problem Name</div>
-                <div class="problem-link"><a href="https://www.codechef.com/problems/PROBLEM_NAME" target="_blank">Solve Problem</a></div>
-            </div>
-        </div>
-
+{%extends 'base.html'%} {%block content%}
+<div class="flex text-white text-1.5xl bg-gray-900 min-h-screen">
+  <div
+    class="flex-3/4 flex flex-col items-center p-4 m-4 bg-gray-800 rounded-lg"
+  >
+    <h1 class="text-4xl font-bold mb-4">CodeChef POTD</h1>
+    <div
+      class="flex p-4 w-full items-center text-2xl bg-gray-500 rounded-lg shadow-lg"
+    >
+      <!-- Today's problem: {{ context.problem_title }} -->
+      Today's problem: Butterfly
+      <div class="ml-auto gap-4 flex">
+        <a href="{{ context.problem_link }}" class="btn btn-primary mx-3"
+          >View Problem</a
+        >
+        <a href="{{ context.problem_link }}" class="btn btn-success mx-3"
+          >Refresh</a
+        >
+      </div>
     </div>
+
+    <div class="flex flex-col justify-center w-full">
+      <div class="flex items-center p-4 w-full text-2xl">Past problems</div>
+      <div class="flex flex-col w-full">
+
+        <div class="flex items-center w-full">
+          <div class="flex items-center p-4 w-full">
+            AI is coming
+          </div>
+          <div class="ml-auto mr-3 flex">
+            <a href="{{ context.problem_link }}" class="btn btn-primary mx-3">
+                View problem
+            </a>
+          </div>
+        </div>
+      </div>
+<!-- ----- -->
+      <div class="flex flex-col w-full">
+
+        <div class="flex items-center w-full">
+          <div class="flex items-center p-4 w-full">
+            AI is coming
+          </div>
+          <div class="ml-auto mr-3 flex">
+            <a href="{{ context.problem_link }}" class="btn btn-primary mx-3">
+                View problem
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- ------ -->
+    </div>
+  </div>
+  <div class="flex-1/4 flex flex-col bg-gray-800 m-4 p-4 rounded-lg">
+    <h1 class="text-blue-400 text-2xl font-bold mb-4">CodeChef</h1>
+    <p class="text-white mb-4">
+      This section will most probably have heatmap or count of streaks. <br />
+      Will update soon!
+    </p>
+  </div>
 </div>
 {%endblock content%}

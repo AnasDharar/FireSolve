@@ -22,10 +22,8 @@ def profile_view(request, username):
         'codeforces_id': user_profile.codeforces_id,
         # Add more fields as needed
     }
-    print(is_owner)
-    print(user) #the user whose profile is being checked
-    print(request.user) #the user who is checking the profile
-    return render(request, '../templates/profile.html', {'user_data': user_data})
+    print('User',request.user.username,'viewed profile of',user.username)
+    return render(request, 'profile.html', {'user_data': user_data})
 
 def edit_profile_view(request, username):
     try:
@@ -44,7 +42,6 @@ def edit_profile_view(request, username):
         'codechef_id': user_profile.codechef_id,
         'codeforces_id': user_profile.codeforces_id,
         'is_owner': is_owner,
-        # Add more fields as needed
         }
     if request.method == 'POST':
         user_profile.first_name = request.POST.get('first_name', user_profile.first_name)

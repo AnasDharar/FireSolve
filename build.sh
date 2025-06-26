@@ -7,10 +7,8 @@ apt-get install -y nodejs
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Tailwind commands
-python manage.py tailwind install
-python manage.py tailwind build
-
 # Django setup
 python manage.py collectstatic --noinput
+
+python manage.py makemigrations
 python manage.py migrate

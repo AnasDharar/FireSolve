@@ -23,7 +23,7 @@
       <a href="{% url 'dashboard' %}" class="logo"><img class="logo-img" src="{% static 'logos/logo-1-transparent.png' %}" alt="FireSolve"></a>
     <div class="buttons">
     {%block buttons%}
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated or user_data.is_owner %}
     <a href="{% url 'profile' request.user.username %}"><span class="get-started">Profile</span></a>
         <a href="{% url 'logout' %}"><span class="get-started">Logout</span></a>
     {% else %}
