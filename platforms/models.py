@@ -34,6 +34,6 @@ class POTDStatus(models.Model): #a new row is made whenever user solved a proble
     class Meta:
         unique_together = ('user', 'problem')
     def __str__(self):
-        return f"{self.user.username} solved {self.problem.title}
+        return f"{self.user.username} solved {self.problem.title}"
 # id |  user_id |  problem_id |  assigned_date |  solved_date
 #  1 |  1       |  1          |  2023-10-01    |  2023-10-02

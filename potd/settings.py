@@ -32,6 +32,7 @@ NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
 
 INSTALLED_APPS = [
+    'platforms.apps.PlatformsConfig',
     'users.apps.UsersConfig',
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
