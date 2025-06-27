@@ -17,7 +17,8 @@ class Problem(models.Model): #this is used to store the problem details
     platform = models.ForeignKey(Platform, on_delete=models.CASCADE)
     problem_id = models.CharField(max_length=50)
     title = models.CharField(max_length=255)
-    solution_url = models.URLField(blank=True, null=True)  # URL to the solution if available
+    solutionurl = models.URLField(blank=True, null=True)  # URL to the solution if available
+    assigned_date = models.DateField(null=True)
 
     class Meta:
         unique_together = ('platform', 'problem_id')
@@ -30,7 +31,6 @@ class Problem(models.Model): #this is used to store the problem details
 class POTDStatus(models.Model): #a new row is made whenever user solved a problem.
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
-    assigned_date = models.DateField()
 
     class Meta:
         unique_together = ('user', 'problem')
