@@ -1,4 +1,18 @@
 {%extends 'base.html'%} {%block content%}
+{% if iscodechef %}
+<div class="flex min-h-screen justify-center items-center">
+<div class="card bg-base-100 w-96 shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">Codechef username missing</h2>
+    <p>You need to add your codechef username in your profile first to access CodeChef POTDs.</p>
+    <div class="card-actions justify-center">
+      <a href="{% url 'profile' request.user.username %}"><button class="btn btn-primary">Go to Profile</button></a>
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+{% if not iscodechef %}
 <div class="flex text-white text-1.5xl bg-gray-900 min-h-screen">
   <div
     class="flex-3/4 flex flex-col items-center p-4 m-4 bg-gray-800 rounded-lg"
@@ -7,13 +21,13 @@
     <div
       class="flex p-4 w-full items-center text-2xl bg-gray-500 rounded-lg shadow-lg"
     >
-      <!-- Today's problem: {{ context.problem_title }} -->
-      Today's problem: Problem 3
+      Today's Problem: {{ potd.title }}
       <div class="ml-auto gap-4 flex">
-        <a href="{{ context.problem_link }}" class="btn btn-primary mx-3"
-          >View Problem</a
-        >
-        <a href="{{ context.problem_link }}" class="btn btn-success mx-3"
+        <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-primary mx-3">
+  View Problem
+</a>
+
+        <a href="{{ potd.solution_url }}" class="btn btn-success mx-3"
           >Refresh</a
         >
       </div>
@@ -22,39 +36,25 @@
     <div class="flex flex-col justify-center w-full">
       <div class="flex items-center p-4 w-full text-2xl">Past problems</div>
       <div class="flex flex-col w-full">
-
+        {% for prob in past_problems %}
         <div class="flex items-center w-full">
           <div class="flex items-center p-4">
-            Problem 2
+            {{ prob.title }}
           </div>
           <div class="ml-auto flex">
-            <a href="{{ context.problem_link }}" class="btn btn-primary mx-3">
+            <div class="flex items-center p-4">
+              {{ prob.assigned_date }}
+            </div>
+            <a href="https://www.codechef.com/problems/{{ prob.problem_id }}" target="_blank" class="btn bg-orange-600 mx-3">
                 View problem
             </a>
-            <a href="{{ context.problem_link }}" class="btn btn-success mx-3">
+            <a href="{{ prob.solutionurl }}" class="btn btn-outline mx-3">
                 View Solution
             </a>
           </div>
         </div>
+        {% endfor %}
       </div>
-<!-- ----- -->
-      <div class="flex flex-col w-full">
-
-        <div class="flex items-center w-full">
-          <div class="flex items-center p-4">
-            Problem 1
-          </div>
-          <div class="ml-auto flex">
-            <a href="{{ context.problem_link }}" class="btn btn-primary mx-3">
-                View problem
-            </a>
-            <a href="{{ context.problem_link }}" class="btn btn-success mx-3">
-                View Solution
-            </a>
-          </div>
-        </div>
-      </div>
-      <!-- ------ -->
     </div>
   </div>
   <div class="flex-1/4 flex flex-col bg-gray-800 m-4 p-4 rounded-lg">
@@ -65,4 +65,5 @@
     </p>
   </div>
 </div>
+{% endif %}
 {%endblock content%}
