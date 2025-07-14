@@ -1,14 +1,28 @@
 from bs4 import BeautifulSoup
-import fetching
+# import fetching
+import requests
+def soup_for_user(username):
+    html_content = None
+    url = f"https://www.codechef.com/users/{username}"
+    response = requests.get(url)
 
-def soup_for_user(username=None):
-    html_content = fetching.getUser(username)
+    if response.status_code == 200:
+        html_content = response.text
+    else:
+        print(f"Failed to fetch the webpage. Status code: {response.status_code}")
     if html_content:
         return BeautifulSoup(html_content, "html.parser")
     return None
 
-def soup_for_submissions(username=None):
-    html_content = fetching.getSubmissions(username)
+def soup_for_submissions(username):
+    html_content = None
+    url = f"https://www.codechef.com/recent/user?page=0&user_handle={username}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        html_content = response.json()["content"]
+    else:
+        print(f"Failed to fetch the webpage. Status code: {response.status_code}")
     if html_content:
         return BeautifulSoup(html_content, "html.parser")
     return None
@@ -36,14 +50,14 @@ def kundli():
     print(spans[2].text)
     print(spans[3].text)
     
-def submissions(target):
+def submissions(user,target):
+    soup = soup_for_submissions(user)
     table = soup.find_all("table", class_="dataTable")[0]
     content = table("tbody")[0] #Getting the first and only tbody, which contains all the submissions
     for i in range(min(len(content.find_all("tr")), 5)):
         sub = content("tr")[i].find_all("td")
         if sub[1]["title"] == target and sub[2].find("span")["title"]=="accepted":
             return True
-       
     return False
 
 if __name__ == "__main__":

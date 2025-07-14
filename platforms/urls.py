@@ -4,4 +4,5 @@ from platforms import views
 urlpatterns = [
     path('codechef/', views.codechef, name='codechef'),
     path('codeforces/', views.codeforces, name='codeforces'),
+    path('refresh/', views.refresh_potd_status, name='refresh_potd_status'),
 ]

@@ -7,7 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      gabarito : ['Gabarito', 'sans-serif'],
+      fontFamily: {
+        gabarito: ['Gabarito', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [

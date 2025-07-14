@@ -31,7 +31,7 @@ class Problem(models.Model): #this is used to store the problem details
 class POTDStatus(models.Model): #a new row is made whenever user solved a problem.
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
-
+    solved_date = models.DateField(null=True)
     class Meta:
         unique_together = ('user', 'problem')
     def __str__(self):

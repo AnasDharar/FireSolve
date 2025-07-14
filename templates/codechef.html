@@ -26,10 +26,10 @@
         <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-primary mx-3">
   View Problem
 </a>
-
-        <a href="{{ potd.solution_url }}" class="btn btn-success mx-3"
-          >Refresh</a
-        >
+<form method="POST" action="{% url 'refresh_potd_status' %}">
+  {% csrf_token %}
+  <a href="{{ potd.solution_url }}" class="btn btn-success mx-3"><button type="submit">Refresh</button></a>
+</form>
       </div>
     </div>
 
@@ -60,8 +60,7 @@
   <div class="flex-1/4 flex flex-col bg-gray-800 m-4 p-4 rounded-lg">
     <h1 class="text-blue-400 text-2xl font-bold mb-4">CodeChef</h1>
     <p class="text-white mb-4">
-      This section will most probably have heatmap or count of streaks. <br />
-      Will update soon!
+      Current Streak: {{user_profile.current_streak}}
     </p>
   </div>
 </div>

@@ -1,49 +1,56 @@
 {%extends 'base.html' %}
 {%block content%}
 {% load static %}
-<link rel="stylesheet" href="../static/index.css">
-<link rel="stylesheet" href="../static/hero.css">
-<link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
-<div class="main-container">
-    <section class="hero">
-  <div class="cd-container cd-max-width-adaptive-sm">
-    <h1 style="color: aliceblue;">Welcome {{user.username}}!</h1>
-    <p class="cd-line-height-lg cd-margin-bottom-sm">Continue making streaks!</div>
+<div class="flex flex-col flex-wrap min-h-screen bg-gray-700 font-gabarito">
+    <section class="flex flex-col md:flex-row bg-gray-800 text-white">
+        <div class="flex p-10 flex-7 flex-col justify-center">
+            <h1 class="font-gabarito text-2xl">We will have one good Quote here!</h1>
+            <p class="font-roboto">- quote author</p>
+        </div>
+        <div class="flex flex-col flex-3 m-5 rounded-2xl shadow-md shadow-gray-700 bg-gray-900 p-4">
+            <div class="text-xl font-gabarito font-bold text-center">Current Ratings</div>
+            <div class="text-md text-orange-400 rounded-2xl font-gabarito font-bold">Codechef: 1200</div>
+            <div class="text-md text-blue-400 rounded-2xl font-gabarito font-bold">Codeforces: 1100</div>
+            <div class="text-md text-yellow-400 rounded-2xl font-gabarito font-bold">Leetcode: 1400</div>
+
+        </div>
 </section>
-    <div class="parts">
+    <div class="flex flex-col md:flex-row">
     <div class="partone">
-        <div class="platform">
+        <div class="flex items-center m-0.5">
             <img src="../static/slider-images/img01.png" alt="" class="platform-logo">
             <div class="text-box">
-                <div class="title">Codechef</div>
-                <a href="{%url 'codechef' %}"><div class="get-started butt">Solve</div></a>
+                <div class="text-3xl mb-2">Codechef</div>
+                <a href="{%url 'codechef' %}"><div class="btn btn-success shadow-md shadow-gray-900">Solve</div></a>
             </div>
-            <div class="streak-box">100 🔥</div>
+            <div class="streak-box">01 <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
         </div>
 
-        <div class="platform">
+        <div class="flex items-center m-0.5">
             <img src="../static/slider-images/img03.png" alt="" class="platform-logo">
             <div class="text-box">
-                <div class="title">Codeforces</div>
-                <div class="get-started butt">Coming soon!</div>
+                <div class="text-3xl mb-2">Codeforces</div>
+                <div class="btn btn-error shadow-md shadow-gray-900">Coming soon!</div>
             </div>
-            <div class="streak-box">43 🔥</div>
+            <div class="streak-box">01 <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
         </div>
 
-        <div class="platform">
+        <div class="flex items-center m-0.">
             <img src="../static/slider-images/img02.png" alt="" class="platform-logo">
             <div class="text-box">
-                <div class="title">Leetcode</div>
-                <div class="get-started butt">Coming Soon!</div>
+                <div class="text-3xl mb-2">Leetcode</div>
+                <div class="btn btn-error shadow-md shadow-gray-900">Coming Soon!</div>
             </div>
-            <div class="streak-box text-amber-200">01 🔥</div>
+            <div class="streak-box">01 <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
         </div>
         <!-- NOTES TO MYSELF -->
          <!-- MAKE THIS SHIR WORK ASAP  -->
     </div>
-    <div class="parttwo">
+    <div class="parttwo border-2 border-gray-200 m-4 rounded-lg">
         <!-- THIS SECTION WILL SHOW THE OVERALL STREAK COUNT AND HEATMAP -->
+         <div class="font-gabarito text-white font-bold text-4xl m-3 ">Leaderboard</div>
+         <div class="font-gabarito text-white text-md ">(Coming soon...)</div>
          <!-- FOR FIRST RELEASE, KEEP OVERALL COUNT ONLY - IMPLEMENT HEATMAP LATER -->
     </div>
     </div>
