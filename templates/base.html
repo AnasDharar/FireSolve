@@ -19,18 +19,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="flex flex-col min-h-screen bg-gray-900 font-gabarito">
-  <div class="navbar">
+  <div class="sm:px-8 sm:py-8 navbar">
     
-      <a href="{% url 'dashboard' %}" class="logo"><img class="logo-img" src="{% static 'logos/logo-1-transparent.png' %}" alt="FireSolve"></a>
+      <a href="{% url 'dashboard' %}" class="flex items-center"><img class="sm:h-14 sm:w-50 h-8 w-27" src="{% static 'logos/logo-1-transparent.png' %}" alt="FireSolve"></a>
     <div class="buttons">
     {%block buttons%}
     {% if user.is_authenticated or user_data.is_owner %}
-    <a href="{% url 'profile' request.user.username %}"><span class="btn btn-outline">Profile</span></a>
-        <a href="{% url 'logout' %}"><span class="btn btn-soft">Logout</span></a>
+    <a href="{% url 'profile' request.user.username %}"><span class="h-8 w-16 sm:h-10 sm:w-20 btn btn-outline">Profile</span></a>
+        <a href="{% url 'logout' %}"><span class="h-8 w-16 sm:h-10 sm:w-20 btn btn-soft">Logout</span></a>
     {% else %}
         <div class="buttons">
-          <a href="{% url 'signup' %}"><span class="btn btn-secondary">Signup</span></a>
-          <a href="{% url 'login' %}"><span class="btn btn-outline">Login</span></a>
+          <a href="{% url 'signup' %}"><span class="h-8 w-16 sm:h-10 sm:w-20 btn btn-secondary">Signup</span></a>
+          <a href="{% url 'login' %}"><span class="h-8 w-16 sm:h-10 sm:w-20 btn btn-outline">Login</span></a>
         </div>
         {% endif %}
         {%endblock buttons%}

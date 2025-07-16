@@ -12,10 +12,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    /* padding: 0 2rem; */
     box-sizing: border-box;
 }
-
+/* 
 .navbar .logo {
     display: flex;
     align-items: center;
@@ -24,14 +24,14 @@
     font-weight: lighter;
     color: white;
     font-size: 2vw;
-}
-
+} */
+/* 
 .logo-img {
     display: inline-block;
     height: 80%;
     width: auto;
     object-fit: contain;
-}
+} */
 .logo-img-intext {
     display: inline;
     height: 2.6vw;

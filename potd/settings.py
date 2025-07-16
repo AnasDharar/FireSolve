@@ -27,6 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG',default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS',cast=Csv())
+# ALLOWED_HOSTS = ['192.168.41.184','localhost','127.0.0.1']
 
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
