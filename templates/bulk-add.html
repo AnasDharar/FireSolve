@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Bulk Add Problems</h2>
+<h3>
+    Format: platform,problem_id,title,solution_url,assigned_date
+    <br>
+</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+{% if messages %}
+  {% for msg in messages %}
+    <p>{{ msg }}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

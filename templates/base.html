@@ -25,12 +25,12 @@
     <div class="buttons">
     {%block buttons%}
     {% if user.is_authenticated or user_data.is_owner %}
-    <a href="{% url 'profile' request.user.username %}"><span class="get-started">Profile</span></a>
-        <a href="{% url 'logout' %}"><span class="get-started">Logout</span></a>
+    <a href="{% url 'profile' request.user.username %}"><span class="btn btn-outline">Profile</span></a>
+        <a href="{% url 'logout' %}"><span class="btn btn-soft">Logout</span></a>
     {% else %}
         <div class="buttons">
-          <a href="{% url 'signup' %}"><span class="get-started">Signup</span></a>
-          <a href="{% url 'login' %}"><span class="get-started">Login</span></a>
+          <a href="{% url 'signup' %}"><span class="btn btn-secondary">Signup</span></a>
+          <a href="{% url 'login' %}"><span class="btn btn-outline">Login</span></a>
         </div>
         {% endif %}
         {%endblock buttons%}

@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from users.models import UserProfile
-from .models import Problem, POTDStatus
+from .models import Platform, Problem, POTDStatus
 import datetime
 from django.urls import reverse
 from pyscripts import codechef_scraping
+from .forms import BulkProblemForm
+from django.contrib import messages
 # Create your views here.
 #All the platforms will be here
 def codechef(request):
@@ -55,3 +57,34 @@ def refresh_potd_status(request):
             )
 
     return redirect(reverse('codechef'))
+
+def addproblems(request):
+    if request.method == "POST":
+        form = BulkProblemForm(request.POST)
+        if form.is_valid():
+            raw = form.cleaned_data['raw_data']
+            lines = raw.strip().split('\n')
+            added = 0
+            for line in lines:
+                parts = [p.strip() for p in line.split(',')]
+                if len(parts) != 5:
+                    continue  # skip malformed rows
+                platform, problem_id, title, solution_url, assigned_date = parts
+                try:
+                    assigned_date_obj = datetime.datetime.strptime(assigned_date, "%Y-%m-%d").date()
+                    Problem.objects.create(
+                        platform=Platform.objects.get(id=int(platform)),
+                        problem_id=problem_id,
+                        title=title,
+                        solutionurl=solution_url,
+                        assigned_date=assigned_date_obj
+                    )
+                    added += 1
+                except Exception as e:
+                    print(f"Error adding problem {problem_id}: {e}")
+            messages.success(request, f"{added} problems added successfully.")
+            return redirect('addproblems')
+    # if a GET request is made, we will create a blank form
+    else:
+        form = BulkProblemForm()
+    return render(request, 'bulk-add.html', {'form': form})
