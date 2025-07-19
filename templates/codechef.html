@@ -12,15 +12,36 @@
 </div>
 </div>
 {% endif %}
+
 {% if not iscodechef %}
+
+{% if messages %}
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">
+      {% for message in messages %}
+      Congratulations 🎉 {{ message }}
+      {% endfor %}
+    </h3>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-error">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+{% endif %}
+
 <div class="flex text-white text-1.5xl bg-gray-900 min-h-screen">
-  <div
-    class="flex-3/4 flex flex-col items-center p-4 m-4 bg-gray-800 rounded-lg"
-  >
+  <div class="flex-3/4 flex flex-col items-center p-4 m-4 bg-gray-800 rounded-lg">
     <h1 class="text-4xl font-bold mb-4">CodeChef POTD</h1>
-    <div
-      class="flex p-4 w-full items-center text-2xl bg-gray-500 rounded-lg shadow-lg"
-    >
+    {% if alreadydone %}
+    <div class="flex p-4 w-full items-center text-2xl bg-green-700 rounded-lg shadow-lg">
+    {% endif %}
+    {% if not alreadydone %}
+    <div class="flex p-4 w-full items-center text-2xl bg-gray-500 rounded-lg shadow-lg">
+    {% endif %}
+
       Today's Problem: {{ potd.title }}
       <div class="ml-auto gap-4 flex">
         <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-primary mx-3">
@@ -59,10 +80,20 @@
   </div>
   <div class="flex-1/4 flex flex-col bg-gray-800 m-4 p-4 rounded-lg">
     <h1 class="text-blue-400 text-2xl font-bold mb-4">CodeChef</h1>
-    <p class="text-white mb-4">
-      Current Streak: {{user_profile.current_streak}}
-    </p>
+    <h3 class="text-white mb-4">
+      Codechef Streak: {{user_profile.codechef_streak}} |
+      Ultimate Streak: {{user_profile.ultimate_streak}}
+    </h3>
   </div>
 </div>
 {% endif %}
+
+<script>
+  window.onload = function () {
+    const modal = document.getElementById('my_modal_5');
+    if (modal) {
+      modal.showModal();
+    }
+  };
+</script>
 {%endblock content%}

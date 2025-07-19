@@ -22,7 +22,17 @@ class UserProfile(models.Model):
     college_name = models.CharField(max_length=255,null=True, blank=True)
     
     # Streak Info
-    current_streak = models.IntegerField(default=0,null=True, blank=True)
+    ultimate_streak = models.IntegerField(default=0,null=True, blank=True)
+
+
+    codechef_streak = models.IntegerField(default=0,null=True, blank=True)
+    codechef_last_solved = models.DateField(null=True, blank=True)
+    
+    codeforces_streak = models.IntegerField(default=0,null=True, blank=True)
+    codeforces_last_solved = models.DateField(null=True, blank=True)
+
+    leetcode_streak = models.IntegerField(default=0,null=True, blank=True)
+    leetcode_last_solved = models.DateField(null=True, blank=True)
     
     # Platform IDs
     codechef_id = models.CharField(max_length=100, blank=True, null=True)

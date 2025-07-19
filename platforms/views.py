@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from psycopg2 import IntegrityError
 from users.models import UserProfile
+from django.contrib.auth.models import User 
 from .models import Platform, Problem, POTDStatus
 import datetime
 from django.urls import reverse
@@ -11,12 +13,15 @@ from django.contrib import messages
 #All the platforms will be here
 def codechef(request):
     user = request.user
+
     if not user.is_authenticated:
-        return HttpResponse("You need to be logged in to access this page.")
-    
+        signup_url = reverse('signup')
+        login_url = reverse('login')
+        return HttpResponse(f"You have not logged in bro. go here -> <a href='{signup_url}'>Signup</a> or <a href='{login_url}'>Login</a>")
+
     user_profile = UserProfile.objects.get(user=user)
     problem = Problem.objects.filter(platform_id=1)  # Get the problems for CodeChef
-
+    alreadydone = POTDStatus.objects.filter(user=user, solved_date=datetime.date.today()).first()
     today = datetime.date.today()
     potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
     past_problems = problem.filter(assigned_date__lt=today).order_by("-assigned_date") #this is the past problems
@@ -29,36 +34,52 @@ def codechef(request):
         'potd': potd,
         'past_problems': past_problems,
         'iscodechef': iscodechef,
+        'alreadydone': alreadydone,
     }
     return render(request, 'codechef.html', context)
 
 def codeforces(request):
-    return HttpResponse("Still making this page")
+    return HttpResponse("Coming soon. Codeforces is not implemented yet.")
 
 def refresh_potd_status(request):
-    print("Refreshing POTD status for CodeChef")
+    print("Refreshing POTD status for CodeChef for user:", request.user.username)
     if request.method=="POST":
         user = request.user
-        alreadydone = POTDStatus.objects.filter(user=user, platform_id=1, date=datetime.date.today()).first()
+        alreadydone = POTDStatus.objects.filter(user=user, solved_date=datetime.date.today()).first()
         if alreadydone:
-            print(f"{user.username} have already solved the potd. Get lost. Dont waste my resources")
+            print(f"{user.username} have already solved the potd. Get lost. Dont waste resources")
+            messages.error(request, "You have already solved today's Problem of the Day.")
             return redirect(reverse('codechef'))
         else:
             user_profile = UserProfile.objects.get(user=user)
             potd = Problem.objects.filter(platform_id=1, assigned_date=datetime.date.today()).first()
             issolved = codechef_scraping.submissions(user_profile.codechef_id,potd.problem_id)
-            print(issolved)
-            POTDStatus.objects.create(
-                user=user,
-                platform_id=1,
-                problem_id=potd.problem_id,
-                date=datetime.date.today(),
-                is_solved=issolved
-            )
+            if issolved:
+                print(f"codechef scraping complete: {user.username} solved the potd")
+                try:
+                    POTDStatus.objects.create(
+                        user=user,
+                        problem=potd,
+                        solved_date=datetime.date.today(),
+                    )
+                    print(f"POTD status created for {user.username}")
+                    messages.success(request, f"You have successfully solved the Problem of the Day!")
+
+                    user_profile.codechef_streak += 1
+                    user_profile.save()
+                except IntegrityError:
+                    print("YOU HAVE ALREADY SOLVED THE PROBLEM TODAY")
+                    messages.error(request, "You have already solved today's Problem of the Day. This is from IntegrityError")
+            else:
+                print(f"codechef scraping complete: {user.username} did not solve the potd")
+                messages.error(request, "You have not solved today's Problem of the Day")
+            
 
     return redirect(reverse('codechef'))
 
 def addproblems(request):
+    if not request.user.is_staff:
+        return HttpResponse("You are not authorized view this page.")
     if request.method == "POST":
         form = BulkProblemForm(request.POST)
         if form.is_valid():

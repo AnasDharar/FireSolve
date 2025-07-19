@@ -33,8 +33,8 @@ class POTDStatus(models.Model): #a new row is made whenever user solved a proble
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     solved_date = models.DateField(null=True)
     class Meta:
-        unique_together = ('user', 'problem')
+        unique_together = ('user', 'solved_date')
     def __str__(self):
         return f"{self.user.username} solved {self.problem.title}"
-# id |  user_id |  problem_id |  assigned_date |  solved_date
-#  1 |  1       |  1          |  2023-10-01    |  2023-10-02
+# id |  user_id |  problem_id |  solved_date
+#  1 |  1       |  1          |  2023-10-02
