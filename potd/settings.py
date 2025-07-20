@@ -127,7 +127,7 @@ STATICFILES_DIRS = [
 if DEBUG:
     # Development settings
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-    STATIC_ROOT = None
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
     # Remove whitenoise for development
     MIDDLEWARE = [m for m in MIDDLEWARE if not m.startswith('whitenoise')]
 else:
@@ -137,4 +137,4 @@ else:
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'    
