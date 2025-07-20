@@ -9,13 +9,11 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-200: oklch(88.5% 0.062 18.334);
     --color-orange-400: oklch(75% 0.183 55.934);
     --color-orange-500: oklch(70.5% 0.213 47.604);
     --color-orange-600: oklch(64.6% 0.222 41.116);
     --color-orange-800: oklch(47% 0.157 37.304);
     --color-amber-100: oklch(96.2% 0.059 95.617);
-    --color-green-200: oklch(92.5% 0.084 155.995);
     --color-green-700: oklch(52.7% 0.154 150.069);
     --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-gray-200: oklch(92.8% 0.006 264.531);
@@ -1745,11 +1743,6 @@
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .drawer-content {
-    grid-column-start: 2;
-    grid-row-start: 1;
-    min-width: calc(0.25rem * 0);
-  }
   .container {
     width: 100%;
     @media (width >= 40rem) {
@@ -2263,9 +2256,6 @@
   .max-w-sm {
     max-width: var(--container-sm);
   }
-  .min-w-md {
-    min-width: var(--container-md);
-  }
   .flex-1 {
     flex: 1;
   }
@@ -2281,17 +2271,8 @@
   .flex-3\/4 {
     flex: calc(3/4 * 100%);
   }
-  .flex-4 {
-    flex: 4;
-  }
-  .flex-6 {
-    flex: 6;
-  }
   .flex-7 {
     flex: 7;
-  }
-  .flex-69 {
-    flex: 69;
   }
   .flex-shrink {
     flex-shrink: 1;
@@ -2301,21 +2282,6 @@
   }
   .grow {
     flex-grow: 1;
-  }
-  .basis-4 {
-    flex-basis: calc(var(--spacing) * 4);
-  }
-  .basis-4\/12 {
-    flex-basis: calc(4/12 * 100%);
-  }
-  .basis-6 {
-    flex-basis: calc(var(--spacing) * 6);
-  }
-  .basis-6\/12 {
-    flex-basis: calc(6/12 * 100%);
-  }
-  .basis-7 {
-    flex-basis: calc(var(--spacing) * 7);
   }
   .border-collapse {
     border-collapse: collapse;
@@ -2508,12 +2474,6 @@
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
-  }
-  .p-10 {
-    padding: calc(var(--spacing) * 10);
-  }
-  .pt-4 {
-    padding-top: calc(var(--spacing) * 4);
   }
   .text-center {
     text-align: center;
@@ -2828,6 +2788,11 @@
       margin-left: auto;
     }
   }
+  .md\:flex {
+    @media (width >= 48rem) {
+      display: flex;
+    }
+  }
   .md\:h-16 {
     @media (width >= 48rem) {
       height: calc(var(--spacing) * 16);
@@ -2851,6 +2816,11 @@
   .md\:justify-around {
     @media (width >= 48rem) {
       justify-content: space-around;
+    }
+  }
+  .md\:justify-between {
+    @media (width >= 48rem) {
+      justify-content: space-between;
     }
   }
   .md\:p-4 {

@@ -39,11 +39,11 @@
     <div class="flex p-4 flex-col md:flex-row w-full items-center md:text-2xl text-md bg-green-700 rounded-lg shadow-lg gap-4">
     {% endif %}
     {% if not alreadydone %}
-    <div class="flex p-2 w-full items-center md:text-2xl text-md bg-gray-500 rounded-lg shadow-lg gap-4">
+    <div class="flex p-4 flex-col md:flex-row w-full items-center md:text-2xl text-md bg-gray-500 rounded-lg shadow-lg gap-4">
     {% endif %}
       <div class="">Today's Problem: {{ potd.title }}</div>
       <div class="md:ml-auto gap-4 flex">
-        <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-primary md:mx-3 w-auto">
+        <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-error md:mx-3 w-auto">
   View Problem
 </a>
 <form method="POST" action="{% url 'refresh_potd_status' %}">

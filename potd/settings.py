@@ -11,12 +11,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from decouple import config, Csv
 from pathlib import Path
-import os
 import dj_database_url
+import os
+from dotenv import load_dotenv
+from urllib.parse import urlparse, parse_qsl
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
+load_dotenv()
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -26,8 +28,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS',cast=Csv())
-# ALLOWED_HOSTS = ['192.168.41.184','localhost','127.0.0.1']
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS',cast=Csv())
+ALLOWED_HOSTS = ['192.168.41.184','localhost','127.0.0.1']
 
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
@@ -83,11 +85,12 @@ DEBUG = config('DEBUG', cast=bool)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': tmpPostgres.path.replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
+        'PORT': 5432,
+        'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
     }
 }
 
