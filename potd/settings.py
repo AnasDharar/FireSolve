@@ -32,7 +32,7 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split("
 
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
-
+load_dotenv(BASE_DIR / '.env')
 INSTALLED_APPS = [
     'platforms.apps.PlatformsConfig',
     'users.apps.UsersConfig',
