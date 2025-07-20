@@ -44,12 +44,12 @@ class UserProfile(models.Model):
         return f"{self.first_name} {self.last_name} - {self.user.username}"
 
     # Resize profile picture if it’s too big
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
         
-        if self.profile_picture:
-            img = Image.open(self.profile_picture.path)
-            if img.height > 300 or img.width > 300:
-                output_size = (300, 300)
-                img.thumbnail(output_size)
-                img.save(self.profile_picture.path)
+    #     if self.profile_picture:
+    #         img = Image.open(self.profile_picture.path)
+    #         if img.height > 300 or img.width > 300:
+    #             output_size = (300, 300)
+    #             img.thumbnail(output_size)
+    #             img.save(self.profile_picture.path)
