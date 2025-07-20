@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', cast=Csv())
-ALLOWED_HOSTS = ['192.168.41.184','localhost','127.0.0.1']
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
