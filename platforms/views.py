@@ -48,7 +48,7 @@ def refresh_potd_status(request):
         alreadydone = POTDStatus.objects.filter(user=user, solved_date=datetime.date.today()).first()
         if alreadydone:
             print(f"{user.username} have already solved the potd. Get lost. Dont waste resources")
-            messages.error(request, "You have already solved today's Problem of the Day.")
+            messages.error(request, "Congratulations 🎉 You have already solved today's Problem of the Day.")
             return redirect(reverse('codechef'))
         else:
             user_profile = UserProfile.objects.get(user=user)

@@ -5,28 +5,56 @@
         color: aliceblue;
     }
 </style>
-<form method="POST" action="{% url 'edit' user.username %}">
-    {% csrf_token %}
-    <div class="form-group">
-        <label for="username">First Name:</label>
-        <input type="text" name="first_name" id="username" value="{{ user.first_name }}" required>
+<div class="flex min-h-screen justify-center items-center">
+  <div class="card bg-orange-400 w-96 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-xl">Edit Profile</h2>
+      <p>Update your profile information below:</p>
+        <form method="POST" action="{% url 'edit' user.username %}" class="space-y-4">
+            {% if messages %}
+                <div class="alert alert-error">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% csrf_token %}
+            <div class="form-group">
+
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="first_name" id="username" placeholder="First Name" value="{{ user.first_name }}" required>
+            </div>
+            <div class="form-group">
+
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="last_name" id="username" placeholder="Last Name" value="{{ user.last_name }}" required>
+            </div>
+            <div class="form-group">
+
+                <input type="email" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="email" id="email" placeholder="Email" value="{{ user.email }}" required>
+            </div>
+            <div class="form-group">
+                {% if not user.codechef_id %}
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codechef_id" id="codechef_id" placeholder="Codechef ID" required>
+                {% else %}
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codechef_id" id="codechef_id" placeholder="Codechef ID" value="{{ user.codechef_id }}" required>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {% if not user.codeforces_id %}
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codeforces_id" id="codeforces_id" placeholder="Codeforces ID" required>
+                {% else %}
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codeforces_id" id="codeforces_id" placeholder="Codeforces ID" value="{{ user.codeforces_id }}" required>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {% if not user.leetcode_id %}
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="leetcode_id" id="leetcode_id" placeholder="Leetcode ID" required>
+                {% else %}
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="leetcode_id" id="leetcode_id" placeholder="Leetcode ID" value="{{ user.leetcode_id }}" required>
+                {% endif %}
+            </div>
+            <input class="btn btn-success shadow-sm shadow-orange-800" type="submit" value="Update Profile">
+            </form>
     </div>
-    <div class="form-group">
-        <label for="username">Last Name:</label>
-        <input type="text" name="last_name" id="username" value="{{ user.last_name }}" required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" value="{{ user.email }}" required>
-    </div>
-    <div class="form-group">
-        <label for="username">Codechef ID:</label>
-        <input type="text" name="codechef_id" id="codechef_id" value="{{ user.codechef_id }}" required>
-    </div>
-    <div class="form-group">
-        <label for="username">Codeforces ID:</label>
-        <input type="text" name="codeforces_id" id="codeforces_id" value="{{ user.codeforces_id }}" required>
-    </div>
-    <input type="submit" value="Update Profile">
-    </form>
+  </div>
+</div>
 {%endblock content%}

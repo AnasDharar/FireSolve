@@ -14,12 +14,14 @@ def profile_view(request, username):
     
     user_data = {
         'username': user.username,
+        'user_profile': user_profile,
         'email': user_profile.email,
         'first_name': user_profile.first_name,
         'last_name': user_profile.last_name,
         'is_owner': is_owner,
         'codechef_id': user_profile.codechef_id,
         'codeforces_id': user_profile.codeforces_id,
+        'leetcode_id': user_profile.leetcode_id,
         # Add more fields as needed
     }
     print('User',request.user.username,'viewed profile of',user.username)
@@ -41,6 +43,7 @@ def edit_profile_view(request, username):
         'last_name': user_profile.last_name,
         'codechef_id': user_profile.codechef_id,
         'codeforces_id': user_profile.codeforces_id,
+        'leetcode_id': user_profile.leetcode_id,
         'is_owner': is_owner,
         }
     if request.method == 'POST':
@@ -49,6 +52,7 @@ def edit_profile_view(request, username):
         user_profile.email = request.POST.get('email', user_profile.email)
         user_profile.codechef_id = request.POST.get('codechef_id', user_profile.codechef_id)
         user_profile.codeforces_id = request.POST.get('codeforces_id', user_profile.codeforces_id)
+        user_profile.leetcode_id = request.POST.get('leetcode_id', user_profile.leetcode_id)
         user_profile.save()
         print('User',request.user.username,'edited profile')
         user_data = {

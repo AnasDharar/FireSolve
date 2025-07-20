@@ -2,57 +2,65 @@
 {%block content%}
 {% load static %}
 
-<div class="flex flex-col flex-wrap min-h-screen bg-gray-700 font-gabarito">
+<div class="flex flex-col min-h-screen bg-gray-700 font-gabarito">
     <section class="flex flex-col md:flex-row bg-gray-800 text-white items-center">
-        <div class="flex p-10 flex-7 flex-col justify-center">
-            <h1 class="font-gabarito text-xl text-orange-400">A Random <i>Quote</i> for you</h1>
-            <h1 id="quote-text" class="font-gabarito text-2xl">We will have one good Quote here!</h1>
-            <p id="quote-author" class="font-roboto">- quote author</p>
+        <div class="flex md:p-10 p-4 flex-7 flex-col">
+            <h1 class="font-gabarito text-md md:text-xl text-orange-400">A Random <i>Quote</i> for you</h1>
+            <h1 id="quote-text" class="font-gabarito text-md md:text-2xl">We will have one good Quote here!</h1>
+            <p id="quote-author" class="font-roboto md:text-md text-sm">- quote author</p>
         </div>
-        <div class="flex flex-col flex-3 m-5 rounded-2xl shadow-md min-w-md shadow-gray-700 bg-gray-900 p-4 justify-center items-center">
-            <div class="text-xl font-gabarito font-bold text-center">Current Ratings</div>
-            <div class="text-md text-orange-400 rounded-2xl font-gabarito font-bold">Codechef: 1200</div>
-            <div class="text-md text-blue-400 rounded-2xl font-gabarito font-bold">Codeforces: 1100</div>
-            <div class="text-md text-yellow-400 rounded-2xl font-gabarito font-bold">Leetcode: 1400</div>
+        <div class="flex flex-col flex-3 m-5 rounded-2xl shadow-md shadow-gray-700 bg-gray-900 p-4 justify-center items-center">
+            <div class="md:text-xl text-md font-gabarito font-bold text-center">ULTIMATE STREAK</div>
+            <div class="text-md text-orange-400 rounded-2xl font-gabarito font-bold">{{ user_data.ultimate_streak }} days</div>
 
         </div>
-</section>
+    </section>
     <div class="flex flex-col md:flex-row">
-    <div class="partone">
+    <div class="flex flex-3/4 flex-col m-4">
         <div class="flex items-center m-0.5">
-            <img src="../static/slider-images/img01.png" alt="" class="platform-logo">
+            <img src="{% static 'slider-images/img01.png' %}" alt="" class="platform-logo">
             <div class="flex flex-col m-4">
                 <div class="text-2xl mb-2">Codechef</div>
                 <a href="{%url 'codechef' %}"><div class="btn btn-success shadow-md shadow-gray-900">Solve</div></a>
             </div>
-            <div class="streak-box">01 <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
+            <div class="text-lg ml-auto">{{ user_data.codechef_streak }} <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
         </div>
 
         <div class="flex items-center m-0.5">
-            <img src="../static/slider-images/img03.png" alt="" class="platform-logo">
+            <img src="{% static 'slider-images/img03.png' %}" alt="" class="platform-logo">
             <div class="flex flex-col m-4">
                 <div class="text-2xl mb-2">Codeforces</div>
                 <a href=""><div class="btn btn-error shadow-md shadow-gray-900" disabled ="disabled">Coming soon!</div></a>
             </div>
-            <div class="streak-box">01 <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
+            <div class="text-lg ml-auto">{{ user_data.codeforces_streak }} <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
         </div>
 
         <div class="flex items-center m-0.">
-            <img src="../static/slider-images/img02.png" alt="" class="platform-logo">
+            <img src="{% static 'slider-images/img02.png' %}" alt="" class="platform-logo">
             <div class="flex flex-col m-4">
                 <div class="text-2xl mb-2">Leetcode</div>
                 <a href=""><div class="btn btn-error shadow-md shadow-gray-900" disabled ="disabled">Coming Soon!</div></a>
             </div>
-            <div class="streak-box">01 <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
+            <div class="text-lg ml-auto">{{ user_data.leetcode_streak }} <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
         </div>
         <!-- NOTES TO MYSELF -->
          <!-- MAKE THIS SHIR WORK ASAP  -->
     </div>
-    <div class="parttwo border-2 border-gray-200 m-4 rounded-lg">
+    <div class="flex flex-1/4 flex-col items-center border-2 border-gray-200 m-4 rounded-lg">
         <!-- THIS SECTION WILL SHOW THE OVERALL STREAK COUNT AND HEATMAP -->
          <div class="font-gabarito text-white font-bold text-4xl m-3 ">Leaderboard</div>
-         <div class="font-gabarito text-white text-md ">(Coming soon...)</div>
-         <!-- FOR FIRST RELEASE, KEEP OVERALL COUNT ONLY - IMPLEMENT HEATMAP LATER -->
+        <div class="flex flex-col w-full">
+            {% for user in leaderboard %}
+            <div class="flex items-center ml-4 mb-2 mr-4 border-b-1 border-gray-300">
+                <div class="flex-1">{{ forloop.counter }}</div>
+                <div class="flex-2">{{ user.user.username }}</div>
+                <div class="flex-1">{{ user.ultimate_streak }} days</div>
+                <div class="flex-1">
+                    <a href="{% url 'profile' user.user.username %}" class="btn btn-ghost">View Profile</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     </div>
 </div>

@@ -20,7 +20,7 @@
   <div class="modal-box">
     <h3 class="text-lg font-bold">
       {% for message in messages %}
-      Congratulations 🎉 {{ message }}
+      {{ message }}
       {% endfor %}
     </h3>
     <div class="modal-action">
@@ -32,19 +32,18 @@
 </dialog>
 {% endif %}
 
-<div class="flex text-white text-1.5xl bg-gray-900 min-h-screen">
+<div class="flex md:flex-row flex-col text-white text-1.5xl bg-gray-900 min-h-screen">
   <div class="flex-3/4 flex flex-col items-center p-4 m-4 bg-gray-800 rounded-lg">
-    <h1 class="text-4xl font-bold mb-4">CodeChef POTD</h1>
+    <h1 class="md:text-4xl text-xl font-bold mb-4">CodeChef POTD</h1>
     {% if alreadydone %}
-    <div class="flex p-4 w-full items-center text-2xl bg-green-700 rounded-lg shadow-lg">
+    <div class="flex p-4 flex-col md:flex-row w-full items-center md:text-2xl text-md bg-green-700 rounded-lg shadow-lg gap-4">
     {% endif %}
     {% if not alreadydone %}
-    <div class="flex p-4 w-full items-center text-2xl bg-gray-500 rounded-lg shadow-lg">
+    <div class="flex p-2 w-full items-center md:text-2xl text-md bg-gray-500 rounded-lg shadow-lg gap-4">
     {% endif %}
-
-      Today's Problem: {{ potd.title }}
-      <div class="ml-auto gap-4 flex">
-        <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-primary mx-3">
+      <div class="">Today's Problem: {{ potd.title }}</div>
+      <div class="md:ml-auto gap-4 flex">
+        <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-primary md:mx-3 w-auto">
   View Problem
 </a>
 <form method="POST" action="{% url 'refresh_potd_status' %}">
@@ -55,23 +54,25 @@
     </div>
 
     <div class="flex flex-col justify-center w-full">
-      <div class="flex items-center p-4 w-full text-2xl">Past problems</div>
+      <div class="flex items-center p-4 w-full md:text-2xl text-md">Past problems</div>
       <div class="flex flex-col w-full">
         {% for prob in past_problems %}
-        <div class="flex items-center w-full">
-          <div class="flex items-center p-4">
+        <div class="flex items-center md:flex-row flex-col w-full p-4 border-b-1">
+          <div class="flex md:p-4 text-lg">
             {{ prob.title }}
           </div>
-          <div class="ml-auto flex">
-            <div class="flex items-center p-4">
+          <div class="md:ml-auto flex md:flex-row flex-col items-center">
+            <div class="flex md:p-4 p-2 md:text-lg text-sm">
               {{ prob.assigned_date }}
             </div>
-            <a href="https://www.codechef.com/problems/{{ prob.problem_id }}" target="_blank" class="btn bg-orange-600 mx-3">
+            <div class="flex">
+            <a href="https://www.codechef.com/problems/{{ prob.problem_id }}" target="_blank" class="btn bg-orange-600 md:mx-3 mx-1">
                 View problem
             </a>
-            <a href="{{ prob.solutionurl }}" class="btn btn-outline mx-3">
+            <a href="{{ prob.solutionurl }}" class="btn btn-outline md:mx-3 mx-1">
                 View Solution
             </a>
+            </div>
           </div>
         </div>
         {% endfor %}

@@ -4,7 +4,7 @@
 {% load static %}
 
 <div class="flex min-h-screen justify-center m-4">
-  <div class="card bg-base-100 w-full shadow-md shadow-orange-800  border-1 rounded-lg p-4 m-4 md:m-12">
+  <div class="card bg-base-100 w-full shadow-md shadow-orange-800  border-1 border-orange-500 rounded-lg p-4 m-4 md:m-12">
     <div class="card-body">
         <div class="flex items-center space-x-4 p-4 mb-4">
         <img src="{% static 'dashboard/profile_img.jpg' %}" alt="Demo Profile Image" class="rounded-full inline w-16 h-16">
@@ -12,27 +12,35 @@
                 <h2 class="card-title">{{ user_data.first_name }} {{ user_data.last_name }}</h2>
                 <h2 class="card-title">@{{ user_data.username }}</h2>
             </div>
+            {% if user_data.is_owner %}
+            <div class="card-actions">
+                <a href="{% url 'edit' username=user_data.username %}" class="btn btn-dash">Edit Profile</a>
+            </div>
+            {% endif %}
         </div>
-        {% if user_data.is_owner %}
-        <div class="card-actions">
-            <a href="{% url 'edit' username=user_data.username %}" class="btn btn-dash">Edit Profile</a>
-        </div>
-        <h3>Email: {{ user_data.email }}</h3>
-        {% endif %}
         <div class="flex flex-col md:flex-row md:justify-around">
-        <div class="flex flex-1 items-center bg-gray-800 border-1 rounded-lg p-4 m-4 md:flex-col">
-            <img src="{% static 'slider-images/img01.png' %}" alt="Demo Profile Image" class="rounded-lg inline w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16">
-            <a href="https://www.codechef.com/users/{{ user_data.codechef_id }}" class="ml-4 md:ml-0">Codechef</a>
+        <div class="flex flex-1 items-center bg-gray-800 border-1 border-orange-500 rounded-lg p-4 m-4 flex-col">
+            <a href="https://www.codechef.com/users/{{ user_data.codechef_id }}" target="_blank" class=" flex md:flex-col items-center">
+                <img src="{% static 'slider-images/img01.png' %}" alt="Demo Profile Image" class="rounded-lg inline w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16">
+                <span class="md:ml-0 ml-4">{{user_data.codechef_id}}</span>
+            </a>
+            <span class="text-sm">Current streak: {{ user_data.user_profile.codechef_streak }} days</span>
         </div>
 
-        <div class="flex flex-1 items-center bg-gray-800 border-1 rounded-lg p-4 m-4 md:flex-col">
-            <img src="{% static 'slider-images/img03.png' %}" alt="Demo Profile Image" class="rounded-lg inline w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16">
-            <a href="https://www.codeforces.com/profile/{{ user_data.codeforces_id }}" class="ml-4 md:ml-0">Codeforces</a>
+        <div class="flex flex-1 items-center bg-gray-800 border-1 border-orange-500 rounded-lg p-4 m-4 flex-col">
+            <a href="https://codeforces.com/profile/{{ user_data.codeforces_id }}" target="_blank" class="flex md:flex-col items-center">
+                <img src="{% static 'slider-images/img03.png' %}" alt="Demo Profile Image" class="rounded-lg inline w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16">
+                <span class="md:ml-0 ml-4">{{user_data.codeforces_id}}</span>
+            </a>
+            <span class="text-sm">Current streak: {{ user_data.user_profile.codeforces_streak }} days</span>
         </div>
 
-        <div class="flex flex-1 items-center w-auto bg-gray-800 border-1 rounded-lg p-4 m-4 md:flex-col">
-            <img src="{% static 'slider-images/img02.png' %}" alt="Demo Profile Image" class="rounded-lg inline w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16">
-            <a href="https://leetcode.com/{{ user_data.leetcode_id }}" class="ml-4 md:ml-0">Leetcode</a>
+        <div class="flex flex-1 items-center w-auto bg-gray-800 border-1 border-orange-500 rounded-lg p-4 m-4 flex-col">
+            <a href="https://leetcode.com/{{ user_data.leetcode_id }}" target="_blank" class="flex md:flex-col items-center">
+                <img src="{% static 'slider-images/img02.png' %}" alt="Demo Profile Image" class="rounded-lg inline w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16">
+                <span class="md:ml-0 ml-4">{{user_data.leetcode_id}}</span>
+            </a>
+            <span class="text-sm">Current streak: {{ user_data.user_profile.leetcode_streak }} days</span>
         </div>
         </div>
 
