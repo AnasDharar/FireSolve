@@ -11,12 +11,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 from urllib.parse import urlparse, parse_qsl
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv()
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
+# load_dotenv()
+# tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -80,15 +81,7 @@ WSGI_APPLICATION = 'potd.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
-        'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
-    }
+    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
 
