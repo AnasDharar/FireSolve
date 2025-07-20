@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image  # For the profile picture
+# from PIL import Image  # For the profile picture
 
 class UserProfile(models.Model):
     # ForeignKey to the default User model
@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True)
     
     # Profile Picture (using Pillow for image handling)
-    profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    # profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
     
     # Graduation Info
     year_of_graduation = models.IntegerField(null=True, blank=True)
