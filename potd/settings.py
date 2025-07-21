@@ -76,6 +76,7 @@ INSTALLED_APPS = [
 # Middleware
 # ------------------------------------------------------------------
 MIDDLEWARE = [
+    'debug_middleware.DebugHostMiddleware',  # custom debug middleware
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # keep always; harmless in dev
     'django.contrib.sessions.middleware.SessionMiddleware',
