@@ -36,7 +36,7 @@ _raw_hosts = os.getenv(
     "ALLOWED_HOSTS",
     "127.0.0.1,localhost"
 )
-ALLOWED_HOSTS = [h.strip() for h in _raw_hosts.split(",") if h.strip()]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "firesolve.salaar.tech", "www.firesolve.salaar.tech"]
 
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
