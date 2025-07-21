@@ -23,13 +23,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = os.environ.get('DEBUG')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-default-key-change-this"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 # ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', cast=Csv())
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+_raw_hosts = os.getenv(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost"
+)
+ALLOWED_HOSTS = [h.strip() for h in _raw_hosts.split(",") if h.strip()]
 
 NPM_BIN_PATH = "C:\\Program Files\\nodejs\\npm.cmd"
 # Application definition
@@ -81,7 +88,7 @@ WSGI_APPLICATION = 'potd.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
+    'default': dj_database_url.parse(os.getenv("DATABASE_URL"), ssl_require=True, conn_max_age=600)
 }
 
 
