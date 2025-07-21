@@ -9,10 +9,8 @@ Key changes:
 - Hard fail if DATABASE_URL missing (avoid mysterious boot errors).
 - Static files configured for both dev & prod; Whitenoise enabled (safe in dev too).
 """
-from pathlib import Path
 import os
 from environ import Env
-import dj_database_url
 env = Env()
 # ------------------------------------------------------------------
 # Paths
