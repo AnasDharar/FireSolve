@@ -1,26 +1,18 @@
-"""
-Django settings for potd project.
-
-Updated to be fully environment‑aware and production‑safe.
-
-Key changes:
-- DEBUG, SECRET_KEY, ALLOWED_HOSTS, DATABASE_URL now read from environment.
-- ALLOWED_HOSTS merges env values *plus* required fallback hosts (localhost + project domain).
-- Hard fail if DATABASE_URL missing (avoid mysterious boot errors).
-- Static files configured for both dev & prod; Whitenoise enabled (safe in dev too).
-"""
 import os
 from environ import Env
+from pathlib import Path # <--- ADD THIS IMPORT
+
 env = Env()
 # ------------------------------------------------------------------
 # Paths
 # ------------------------------------------------------------------
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# OLD: BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent # <--- CHANGE THIS LINE TO USE pathlib.Path
 
 # ------------------------------------------------------------------
 # Debug & Secret Key
 # ------------------------------------------------------------------
-env.read_env(os.path.join(BASE_DIR, '.env'))
+env.read_env(os.path.join(BASE_DIR, '.env')) # Keep os.path.join here as env.read_env expects a string path
 DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = env("SECRET_KEY")
 # ------------------------------------------------------------------
@@ -48,9 +40,9 @@ INSTALLED_APPS = [
 # Middleware
 # ------------------------------------------------------------------
 MIDDLEWARE = [
-    'debug_middleware.DebugHostMiddleware',  # custom debug middleware
+    'debug_middleware.DebugHostMiddleware',    # custom debug middleware
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # keep always; harmless in dev
+    'whitenoise.middleware.WhiteNoiseMiddleware',    # keep always; harmless in dev
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -67,7 +59,7 @@ ROOT_URLCONF = 'potd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'], # This will now work correctly
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,8 +93,8 @@ USE_TZ = True
 # Static Files
 # ------------------------------------------------------------------
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # source assets
-STATIC_ROOT = BASE_DIR / 'staticfiles'    # collectstatic target (served by Nginx)
+STATICFILES_DIRS = [BASE_DIR / 'static']    # source assets
+STATIC_ROOT = BASE_DIR / 'staticfiles'      # collectstatic target (served by Nginx)
 
 if DEBUG:
     # Local: don't use manifest hashing
