@@ -2,7 +2,13 @@ import os
 from environ import Env
 from pathlib import Path # <--- ADD THIS IMPORT
 
-env = Env()
+env = Env(
+    # Set default values for environment variables
+    DEBUG=(bool, False),  # Default to False for production
+    DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
+    ALLOWED_HOSTS=(list, ['localhost', '127.0.0.1']),
+    SECRET_KEY=(str, 'your-default-secret-key'), 
+)
 # ------------------------------------------------------------------
 # Paths
 # ------------------------------------------------------------------
@@ -19,7 +25,7 @@ SECRET_KEY = env("SECRET_KEY")
 # Allowed Hosts
 # ------------------------------------------------------------------
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-
+print(f"[DEBUG] ALLOWED_HOSTS: {ALLOWED_HOSTS}")  # Debugging line to check allowed hosts
 # ------------------------------------------------------------------
 # Installed Apps
 # ------------------------------------------------------------------

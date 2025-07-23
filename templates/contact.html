@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<section class="bg-base-200 py-12 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl font-bold text-orange-500 mb-4">Contact Me</h1>
+    <p class="text-lg text-gray-300 mb-8">
+      I’m the creator of <span class="text-orange-500 font-semibold">FireSolve</span>.  
+      Feel free to reach out if you have feedback, suggestions, or just want to say hi!
+    </p>
+
+    <!-- Profile Card -->
+    <div class="card bg-base-100 shadow-xl p-6 mx-auto max-w-md">
+      <img src="{% static 'dashboard/ayydee.jpeg' %}" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto mb-4">
+      <h2 class="text-2xl font-semibold">Anas Dharar</h2>
+      <p class="text-gray-400">19, Research Intern @VJTI | Pupil @Codeforces | 3 ★★★ @Codechef | WebDev && Competitive Programmer | IT'28</p>
+
+      <!-- Social Links -->
+      <div class="flex justify-center gap-5 mt-5">
+        <a href="https://github.com/AnasDharar" class="btn btn-outline btn-sm">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+        <a href="https://linkedin.com/in/anasdharar" class="btn btn-outline btn-sm">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://twitter.com/salaartwt" class="btn btn-outline btn-sm">
+          <i class="fa-brands fa-twitter"></i> Twitter
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-10 text-gray-400">
+      <p>Want to connect directly? Drop me an email at <a href="mailto:mohdanasdharar@email.com" class="text-orange-500">mohdanasdharar@email.com</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}

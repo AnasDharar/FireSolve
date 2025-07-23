@@ -5,5 +5,6 @@ from accounts import views as accounts_views
 urlpatterns = [
     path('',view=views.landing, name = 'landing'),
     path('dashboard/',view=views.dashboard, name = 'dashboard'),
-    
+    path('about/', view=views.about, name='about'),
+    path('contact/', view=views.contact, name='contact'),
 ]

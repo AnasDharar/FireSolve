@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="bg-base-200 py-12 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl font-bold text-orange-500 mb-6 p-4">About FireSolve</h1>
+    <p class="text-lg text-gray-300 mb-6">
+      FireSolve is your daily companion for improving problem-solving skills on competitive programming platforms like
+      <span class="font-semibold">CodeChef</span>, <span class="font-semibold">Codeforces</span>, and <span class="font-semibold">LeetCode</span>.
+    </p>
+    <p class="text-gray-400 mb-10">
+      Track <span class="text-orange-500 font-medium">Problem of the Day (POTD)</span>, maintain streaks, and view your performance
+      history with ease. Whether you're aiming for ICPC, improving your coding skills, or just practicing regularly,
+      FireSolve ensures you stay on track.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card bg-base-100 shadow-lg p-6">
+        <h2 class="text-xl font-bold text-orange-500 mb-2">Track Your Progress</h2>
+        <p class="text-gray-400">Monitor daily problems and maintain a streak to keep your consistency up.</p>
+      </div>
+      <div class="card bg-base-100 shadow-lg p-6">
+        <h2 class="text-xl font-bold text-orange-500 mb-2">View Solutions</h2>
+        <p class="text-gray-400">Access solutions for past problems directly from FireSolve.</p>
+      </div>
+      <div class="card bg-base-100 shadow-lg p-6">
+        <h2 class="text-xl font-bold text-orange-500 mb-2">Multi-Platform Support</h2>
+        <p class="text-gray-400">Works with CodeChef, Codeforces, and LeetCode seamlessly.</p>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <a href="{% url 'signup' %}" class="btn btn-error btn-wide">Get Started</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
