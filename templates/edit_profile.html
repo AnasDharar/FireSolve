@@ -33,21 +33,21 @@
             </div>
             <div class="form-group">
                 {% if not user.codechef_id %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codechef_id" id="codechef_id" placeholder="Codechef ID" required>
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codechef_id" id="codechef_id" placeholder="Codechef ID">
                 {% else %}
                 <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codechef_id" id="codechef_id" placeholder="Codechef ID" value="{{ user.codechef_id }}" required>
                 {% endif %}
             </div>
             <div class="form-group">
                 {% if not user.codeforces_id %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codeforces_id" id="codeforces_id" placeholder="Codeforces ID" required>
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codeforces_id" id="codeforces_id" placeholder="Codeforces ID">
                 {% else %}
                 <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codeforces_id" id="codeforces_id" placeholder="Codeforces ID" value="{{ user.codeforces_id }}" required>
                 {% endif %}
             </div>
             <div class="form-group">
                 {% if not user.leetcode_id %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="leetcode_id" id="leetcode_id" placeholder="Leetcode ID" required>
+                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="leetcode_id" id="leetcode_id" placeholder="Leetcode ID">
                 {% else %}
                 <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="leetcode_id" id="leetcode_id" placeholder="Leetcode ID" value="{{ user.leetcode_id }}" required>
                 {% endif %}

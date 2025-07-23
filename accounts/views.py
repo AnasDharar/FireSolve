@@ -15,17 +15,16 @@ def signup(request):
         email = request.POST.get('email')
         username = request.POST.get('username')
         password = request.POST.get('password')
-        # try:
-        user = User.objects.create_user(first_name = f_name, last_name = l_name,email=email,username=username, password=password)
-        user_profile = UserProfile.objects.create(user=user, first_name=f_name, last_name=l_name, email=email)
-        user_profile.save()
-        user.save()
-        messages.info(request,'User created successfully')
-        return redirect(reverse('login'))
-        # except IntegrityError:
-        #     print("Username already exists")
-        #     print(IntegrityError)
-        #     messages.error(request,'Username already exists')
+        try:
+            user = User.objects.create_user(first_name = f_name, last_name = l_name,email=email,username=username, password=password)
+            user_profile = UserProfile.objects.create(user=user, first_name=f_name, last_name=l_name, email=email)
+            user_profile.save()
+            user.save()
+            messages.info(request,'User created successfully')
+            return redirect(reverse('login'))
+        except IntegrityError:
+            print("Username already exists")
+            messages.error(request,'Username already exists')
 
     return render(request, 'signup.html')
 
@@ -39,6 +38,8 @@ def loginUser(request):
             return redirect(reverse('dashboard'))
         else:
             print("Invalid credentials")
+            messages.error(request, 'Invalid credentials')
+            return redirect(reverse('login'))
     
     return render(request, 'login.html')
         
