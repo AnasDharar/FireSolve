@@ -221,7 +221,7 @@
     .first-view-text {
         width: 90%;
         min-height: 60vh;
-        z-index: 2; /* ensure it's above slider */
+        z-index: 2;
     }
 
     .slider-container {
