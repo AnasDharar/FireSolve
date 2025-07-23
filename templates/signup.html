@@ -8,7 +8,7 @@
   <div class="w-full max-w-md bg-base-100 rounded-lg shadow-lg p-8 space-y-4">
     <h2 class="text-3xl font-bold text-center">Sign Up</h2>
     <p class="text-center text-sm text-gray-500">Welcome to FireSolve!</p>
-
+    <input type="hidden" name="signup_secret_key" value="{{ SIGNUP_SECRET_KEY }}">
     <input type="text" name="f_name" placeholder="First Name" class="input input-bordered w-full" required>
     <input type="text" name="l_name" placeholder="Last Name" class="input input-bordered w-full" required>
     <input type="text" name="username" id="username" placeholder="Username" class="input input-bordered w-full" required>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.models import User 
+from potd import settings
 from users.models import UserProfile
 from django.contrib.auth import authenticate, logout, login
 from django.db import IntegrityError
@@ -16,6 +17,8 @@ def signup(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         try:
+            if request.POST.get('signup_secret_key') != settings.SIGNUP_SECRET_KEY:
+                return JsonResponse({'error': 'Invalid signup secret key'}, status=403)
             user = User.objects.create_user(first_name = f_name, last_name = l_name,email=email,username=username, password=password)
             user_profile = UserProfile.objects.create(user=user, first_name=f_name, last_name=l_name, email=email)
             user_profile.save()
@@ -26,7 +29,7 @@ def signup(request):
             print("Username already exists")
             messages.error(request,'Username already exists')
 
-    return render(request, 'signup.html')
+    return render(request, 'signup.html', {'SIGNUP_SECRET_KEY': settings.SIGNUP_SECRET_KEY})
 
 def loginUser(request):
     if request.method == "POST":

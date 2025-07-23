@@ -7,7 +7,8 @@ env = Env(
     DEBUG=(bool, False),  # Default to False for production
     DATABASE_URL=(str, 'sqlite:///db.sqlite3'),
     ALLOWED_HOSTS=(list, ['localhost', '127.0.0.1']),
-    SECRET_KEY=(str, 'your-default-secret-key'), 
+    SECRET_KEY=(str, 'your-default-secret-key'),
+    SIGNUP_SECRET_KEY=(str),
 )
 # ------------------------------------------------------------------
 # Paths
@@ -21,6 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent # <--- CHANGE THIS LINE TO USE
 env.read_env(os.path.join(BASE_DIR, '.env')) # Keep os.path.join here as env.read_env expects a string path
 DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = env("SECRET_KEY")
+SIGNUP_SECRET_KEY = env("SIGNUP_SECRET_KEY")
 # ------------------------------------------------------------------
 # Allowed Hosts
 # ------------------------------------------------------------------
