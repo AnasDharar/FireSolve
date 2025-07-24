@@ -14,15 +14,22 @@ env = Env(
 # Paths
 # ------------------------------------------------------------------
 # OLD: BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = Path(__file__).resolve().parent.parent # <--- CHANGE THIS LINE TO USE pathlib.Path
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ------------------------------------------------------------------
 # Debug & Secret Key
 # ------------------------------------------------------------------
-env.read_env(os.path.join(BASE_DIR, '.env')) # Keep os.path.join here as env.read_env expects a string path
+env.read_env(os.path.join(BASE_DIR, '.env'))
 DEBUG = env.bool("DEBUG", default=False)
 SECRET_KEY = env("SECRET_KEY")
 SIGNUP_SECRET_KEY = env("SIGNUP_SECRET_KEY")
+
+RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+
+# reCAPTCHA settings for development
+if DEBUG:
+    RECAPTCHA_TESTING = True
 # ------------------------------------------------------------------
 # Allowed Hosts
 # ------------------------------------------------------------------
@@ -32,6 +39,7 @@ print(f"[DEBUG] ALLOWED_HOSTS: {ALLOWED_HOSTS}")  # Debugging line to check allo
 # Installed Apps
 # ------------------------------------------------------------------
 INSTALLED_APPS = [
+    'django_recaptcha',
     'platforms.apps.PlatformsConfig',
     'users.apps.UsersConfig',
     'accounts.apps.AccountsConfig',

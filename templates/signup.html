@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block extra_head %}
 <link href="{% static 'output.css' %}" rel="stylesheet">
+{{form.media}}
+{% endblock %}
 {% block content %}
 <form action="{% url 'signup' %}" method="post" class="flex flex-col justify-center items-center min-h-screen">
   <!-- <link rel="stylesheet" href="{% static 'login.css' %}"> -->
@@ -8,27 +11,27 @@
   <div class="w-full max-w-md bg-base-100 rounded-lg shadow-lg p-8 space-y-4">
     <h2 class="text-3xl font-bold text-center">Sign Up</h2>
     <p class="text-center text-sm text-gray-500">Welcome to FireSolve!</p>
-    <input type="hidden" name="signup_secret_key" value="{{ SIGNUP_SECRET_KEY }}">
-    <input type="text" name="f_name" placeholder="First Name" class="input input-bordered w-full" required>
-    <input type="text" name="l_name" placeholder="Last Name" class="input input-bordered w-full" required>
-    <input type="text" name="username" id="username" placeholder="Username" class="input input-bordered w-full" required>
-
-    <div id="username-alert-1" class="alert alert-warning hidden text-sm">
-      Username should be between 3 and 20 characters long and can only contain letters, numbers, and underscores.
-    </div>
-    <div id="username-alert-2" class="alert alert-warning hidden text-sm">
-      Username already exists
-    </div>
-
-    <input type="email" name="email" placeholder="Email" class="input input-bordered w-full" required>
-    <input type="password" name="password" id="password" placeholder="Password" class="input input-bordered w-full" required>
-
-    <div id="password-alert-1" class="alert alert-warning hidden text-sm">
-      Password must be at least 8 characters long.
-    </div>
-
+    
+    <!-- Display form errors -->
+    {% if form.errors %}
+      <div class="alert alert-error">
+        {% for field, errors in form.errors.items %}
+          <p><strong>{{ field }}:</strong> {{ errors|join:", " }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    
+    <span class="input input-bordered w-full">{{form.first_name.label_tag}} {{form.first_name}}</span>
+    <span class="input input-bordered w-full">{{form.last_name.label_tag}} {{form.last_name}}</span>
+    <span class="input input-bordered w-full">{{form.username.label_tag}} {{form.username}}</span>
+    <span class="input input-bordered w-full">{{form.email.label_tag}} {{form.email}}</span>
+    <span class="input input-bordered w-full">{{form.password1.label_tag}} {{form.password1}}</span>
+    <span class="input input-bordered w-full">{{form.password2.label_tag}} {{form.password2}}</span>
+    {{form.signup_secret_key}}
+    {{form.website}}
+    {{form.form_timestamp}}
+    {{form.captcha}}
     <button type="submit" class="btn btn-error w-full">Sign Up</button>
-
     <p class="text-center text-sm">
       <span class="">Already have an account?</span>
       <a href="{% url 'login' %}" class="link link-error">Log In</a>
