@@ -1,0 +1,35 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: aliceblue;
+}
+.parts{
+    display: flex;
+    flex-wrap: wrap;
+}
+.intro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+    border: 1px solid red;
+    font-size: 2rem;
+}
+.text-box{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 1rem;
+}
+.platform-logo{
+    height: 5rem;
+    width: auto;
+    margin-right: 0.5rem;
+    margin-left: 1rem;
+    border-radius: 0.5rem;
+}
+.butt{
+    margin: 0;
+    width: 60%;
+}
