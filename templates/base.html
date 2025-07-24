@@ -17,6 +17,9 @@
     <link rel="icon" type="image/png" href="{% static 'logos/title-image.png' %}"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    {% block extra_head %}
+    {% endblock %}
 </head>
 <body class="flex flex-col min-h-screen bg-gray-900 font-gabarito">
   <div class="sm:px-8 sm:py-8 navbar">
