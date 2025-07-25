@@ -22,6 +22,7 @@ def profile_view(request, username):
         'codechef_id': user_profile.codechef_id,
         'codeforces_id': user_profile.codeforces_id,
         'leetcode_id': user_profile.leetcode_id,
+        'total_solved': user_profile.total_solved,
         # Add more fields as needed
     }
     print('User',request.user.username,'viewed profile of',user.username)

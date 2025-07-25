@@ -95,8 +95,9 @@ def refresh_potd_status(request):
                     
                     # Increment streak
                     user_profile.codechef_streak += 1
-                    user_profile.save(update_fields=['codechef_streak'])
-                    
+                    user_profile.total_solved += 1
+                    user_profile.save(update_fields=['codechef_streak', 'total_solved'])
+
                     print(f"POTD status created for {user.username}, streak: {user_profile.codechef_streak}")
                     messages.success(request, f"You have successfully solved the Problem of the Day! Streak: {user_profile.codechef_streak}")
                         
