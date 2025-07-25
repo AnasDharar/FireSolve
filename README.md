@@ -22,7 +22,7 @@ FireSolve is a Django-based web platform designed to help competitive programmer
 | Backend      | Django 5.x                          |
 | Frontend     | Tailwind CSS + DaisyUI              |
 | Database     | PostgreSQL                          |
-| Deployment   | Render                              |
+| Deployment   | AWS EC2                             |
 | Package Mgmt | `pip` for Python, `npm` for Tailwind|
 
 ---
