@@ -27,7 +27,7 @@ def codechef(request):
     today = datetime.date.today()
     potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
     past_problems = problem.filter(assigned_date__lt=today).order_by("-assigned_date") #this is the past problems
-    leaderboard = UserProfile.objects.all().order_by('-codechef_streak')[:10]
+    leaderboard = UserProfile.objects.all().order_by('-total_solved')[:10]
     iscodechef = True
     if user_profile.codechef_id is not None and user_profile.codechef_id != "":
         iscodechef = False
