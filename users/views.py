@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth.models import User 
 from .models import UserProfile
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 # Create your views here.
 def profile_view(request, username):
     try:
@@ -25,7 +28,7 @@ def profile_view(request, username):
         'total_solved': user_profile.total_solved,
         # Add more fields as needed
     }
-    print('User',request.user.username,'viewed profile of',user.username)
+    logger.info(f"User {request.user.username} viewed profile of {user.username}")
     return render(request, 'profile.html', {'user_data': user_data})
 
 def edit_profile_view(request, username):
@@ -55,7 +58,7 @@ def edit_profile_view(request, username):
         user_profile.codeforces_id = request.POST.get('codeforces_id', user_profile.codeforces_id)
         user_profile.leetcode_id = request.POST.get('leetcode_id', user_profile.leetcode_id)
         user_profile.save()
-        print('User',request.user.username,'edited profile')
+        logger.info(f"User {request.user.username} edited profile")
         user_data = {
         'username': user.username,
         'email': user_profile.email,

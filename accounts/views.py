@@ -10,6 +10,9 @@ from django.urls import reverse
 from accounts.forms import CustomUserCreationForm
 from django.core.cache import cache
 import time
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 # Create your views here.
 
 def signup(request):
@@ -27,9 +30,9 @@ def signup(request):
         cache.set(cache_key, attempts + 1, 3600)  # 1 hour timeout
         
         form = CustomUserCreationForm(request.POST)
-        print(f"Form is valid: {form.is_valid()}")
+        logger.info(f"Form is valid: {form.is_valid()}")
         if not form.is_valid():
-            print(f"Form errors: {form.errors}")
+            logger.warning(f"Form errors: {form.errors}")
         try:
             if form.is_valid():
                 user = form.save()
@@ -42,7 +45,7 @@ def signup(request):
                 # Form is not valid, return with errors
                 return render(request, 'signup.html', {'form': form, 'SIGNUP_SECRET_KEY': settings.SIGNUP_SECRET_KEY})
         except IntegrityError:
-            print("Username already exists")
+            logger.warning(f"Username {form.cleaned_data['username']} already exists")
             messages.error(request,'Username already exists')
     else:
         # Initialize form with timestamp for timing validation
@@ -62,7 +65,7 @@ def loginUser(request):
             login(request, user)
             return redirect(reverse('dashboard'))
         else:
-            print("Invalid credentials")
+            logger.error(f"Invalid credentials for user {username}")
             messages.error(request, 'Invalid credentials')
             return redirect(reverse('login'))
     

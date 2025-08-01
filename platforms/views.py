@@ -11,8 +11,9 @@ from .forms import BulkProblemForm
 from django.contrib import messages
 from django.db import transaction
 from django.core.exceptions import ValidationError
-# Create your views here.
-#All the platforms will be here
+import logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 def codechef(request):
     user = request.user
 
@@ -46,7 +47,11 @@ def codeforces(request):
     return HttpResponse("Coming soon. Codeforces is not implemented yet.")
 
 def refresh_potd_status(request):
-    print("Refreshing POTD status for CodeChef for user:", request.user.username)
+    # print("Refreshing POTD status for CodeChef for user:", request.user.username)
+    logger.info(f"Refreshing POTD status for CodeChef for user: {request.user.username}")
+    if not request.user.is_authenticated:
+        messages.error(request, "You need to be logged in to refresh the POTD status.")
+        return redirect(reverse('codechef'))
     if request.method=="POST":
         user = request.user
         
@@ -65,7 +70,8 @@ def refresh_potd_status(request):
             # Re-check within transaction to prevent race conditions
             alreadydone = POTDStatus.objects.filter(user=user, solved_date=datetime.date.today()).first()
             if alreadydone:
-                print(f"{user.username} have already solved the potd. Get lost. Dont waste resources")
+                # print(f"{user.username} have already solved the potd. Get lost. Dont waste resources")
+                logger.info(f"{user.username} has already solved today's Problem of the Day.")
                 messages.success(request, "Congratulations 🎉 You have already solved today's Problem of the Day.")
                 return redirect(reverse('codechef'))
             
@@ -79,7 +85,8 @@ def refresh_potd_status(request):
             issolved = codechef_scraping.submissions(user_profile.codechef_id, potd.problem_id)
             
             if issolved:
-                print(f"codechef scraping complete: {user.username} solved the potd")
+                # print(f"codechef scraping complete: {user.username} solved the potd")
+                logger.info(f"CodeChef scraping complete: {user.username} solved the Problem of the Day.")
                 try:
                     # Double-check again within the transaction
                     if POTDStatus.objects.filter(user=user, problem=potd).exists():
@@ -98,17 +105,17 @@ def refresh_potd_status(request):
                     user_profile.total_solved += 1
                     user_profile.save(update_fields=['codechef_streak', 'total_solved'])
 
-                    print(f"POTD status created for {user.username}, streak: {user_profile.codechef_streak}")
+                    logger.info(f"POTD status created for {user.username}, streak: {user_profile.codechef_streak}")
                     messages.success(request, f"You have successfully solved the Problem of the Day! Streak: {user_profile.codechef_streak}")
                         
                 except IntegrityError:
-                    print("YOU HAVE ALREADY SOLVED THE PROBLEM TODAY - IntegrityError caught")
+                    logger.warning(f"IntegrityError caught for user {user.username}: already solved today's Problem of the Day.")
                     messages.success(request, "Congratulations 🎉 You have already solved today's Problem of the Day.")
                 except Exception as e:
-                    print(f"Error creating POTD status: {e}")
+                    logger.error(f"Error creating POTD status for user {user.username}: {e}")
                     messages.error(request, "An error occurred while updating your status.")
             else:
-                print(f"codechef scraping complete: {user.username} did not solve the potd")
+                logger.info(f"CodeChef scraping complete: {user.username} did not solve the Problem of the Day.")
                 messages.error(request, "You have not solved today's Problem of the Day")
             
 
@@ -139,7 +146,7 @@ def addproblems(request):
                     )
                     added += 1
                 except Exception as e:
-                    print(f"Error adding problem {problem_id}: {e}")
+                    logger.error(f"Error adding problem {problem_id}: {e}")
             messages.success(request, f"{added} problems added successfully.")
             return redirect('addproblems')
     # if a GET request is made, we will create a blank form
