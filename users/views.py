@@ -7,6 +7,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 # Create your views here.
+#hello from ubuntu
 def profile_view(request, username):
     try:
         user = User.objects.get(username=username)
