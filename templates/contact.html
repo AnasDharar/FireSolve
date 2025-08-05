@@ -8,7 +8,7 @@
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
 />
-<section class="bg-base-200 py-12 px-6">
+<section class="bg-gray-800 py-12 px-6">
   <div class="max-w-4xl mx-auto text-center">
     <h1 class="text-4xl font-bold text-orange-500 mb-4">Contact Me</h1>
     <p class="text-lg text-gray-300 mb-8">
@@ -17,13 +17,16 @@
     </p>
 
     <!-- Profile Card -->
-    <div class="card bg-base-100 shadow-xl p-6 mx-auto max-w-md">
-      <img src="{% static 'dashboard/ayydee.jpeg' %}" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto mb-4">
+    <div class="card bg-gray-900 shadow-xl p-6 mx-auto max-w-md">
+      <picture>
+        <img src="{% static 'dashboard/ayydee.jpeg' %}" alt="Profile Picture" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-md shadow-black">
+      </picture>
       <h2 class="text-2xl font-semibold">Anas Dharar</h2>
-      <p class="text-gray-400">19, Research Intern @VJTI | Pupil @Codeforces | 3 ★★★ @Codechef | WebDev && Competitive Programmer | IT'28</p>
+      <p class="text-gray-200">19, Research Intern @VJTI | Pupil @Codeforces | 3 ★★★ @Codechef | WebDev && Competitive Programmer | IT'28</p>
 
       <!-- Social Links -->
-      <div class="flex justify-center gap-5 mt-5">
+      <div class="flex flex-col justify-center gap-5 mt-5">
+        <div class="flex gap-5 justify-center">
         <a href="https://github.com/AnasDharar" class="btn btn-outline btn-sm">
           <i class="fa-brands fa-github"></i> GitHub
         </a>
@@ -33,11 +36,24 @@
         <a href="https://twitter.com/salaartwt" class="btn btn-outline btn-sm">
           <i class="fa-brands fa-twitter"></i> Twitter
         </a>
+        </div>
+
+        <div class="flex gap-5 justify-center">
+        <a href="https://codechef.com/users/anasdharar" class="btn btn-outline btn-sm">
+          Codechef
+        </a>
+        <a href="https://codeforces.com/profile/salaarsenpai" class="btn btn-outline btn-sm">
+          Codeforces
+        </a>
+        <a href="https://leetcode.com/anasdharar" class="btn btn-outline btn-sm">
+          LeetCode
+        </a>
+        </div>
       </div>
     </div>
 
     <div class="mt-10 text-gray-400">
-      <p>Want to connect directly? Drop me an email at <a href="mailto:mohdanasdharar@email.com" class="text-orange-500">mohdanasdharar@email.com</a></p>
+      <p>Want to connect directly? Drop me an email at <a href="mailto:mohdanasdharar@gmail.com" class="text-orange-500">mohdanasdharar@gmail.com</a></p>
     </div>
   </div>
 </section>
