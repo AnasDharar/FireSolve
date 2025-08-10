@@ -13,6 +13,7 @@ from django.contrib import messages
 from django.db import transaction
 from django.core.exceptions import ValidationError
 import logging
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 def codechef(request):

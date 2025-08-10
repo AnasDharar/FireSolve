@@ -4,12 +4,17 @@ import hashlib
 import requests
 import random
 from environ import Env
+import os
+from pathlib import Path
 # Your Codeforces API keys
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 env = Env(
     # Set default values for environment variables
     CF_API_KEY=(str),
     CF_SECRET_API_KEY=(str),
 )
+env.read_env(os.path.join(BASE_DIR, '.env'))
 API_KEY = env("CF_API_KEY")
 API_SECRET = env("CF_SECRET_API_KEY")
 rand = str(random.randint(100000, 999999))  # Random number for signature
