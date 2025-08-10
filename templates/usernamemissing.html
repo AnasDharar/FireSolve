@@ -1,0 +1,11 @@
+<div class="flex min-h-screen justify-center items-center">
+<div class="card bg-base-100 w-96 shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title">{{ platform }} username missing</h2>
+    <p>You need to add your {{ platform }} username in your profile first to access {{ platform }} POTDs.</p>
+    <div class="card-actions justify-center">
+      <a href="{% url 'profile' request.user.username %}"><button class="btn btn-primary">Go to Profile</button></a>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,20 +1,4 @@
 {%extends 'base.html'%} {%block content%}
-{% if iscodechef %}
-<div class="flex min-h-screen justify-center items-center">
-<div class="card bg-base-100 w-96 shadow-sm">
-  <div class="card-body">
-    <h2 class="card-title">Codechef username missing</h2>
-    <p>You need to add your codechef username in your profile first to access CodeChef POTDs.</p>
-    <div class="card-actions justify-center">
-      <a href="{% url 'profile' request.user.username %}"><button class="btn btn-primary">Go to Profile</button></a>
-    </div>
-  </div>
-</div>
-</div>
-{% endif %}
-
-{% if not iscodechef %}
-
 {% if messages %}
 <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
   <div class="modal-box">
@@ -34,7 +18,7 @@
 
 <div class="flex md:flex-row flex-col text-white text-1.5xl bg-gray-900 min-h-screen">
   <div class="flex-8/12 flex flex-col items-center p-4 m-4 bg-gray-800 rounded-lg">
-    <h1 class="md:text-4xl text-xl font-bold mb-4">CodeChef POTD</h1>
+    <h1 class="md:text-4xl text-xl font-bold mb-4">{{platform}} POTD</h1>
     {% if alreadydone %}
     <div class="flex p-4 flex-col md:flex-row w-full items-center md:text-2xl text-md bg-green-700 rounded-lg shadow-lg gap-4">
     {% endif %}
@@ -48,6 +32,7 @@
 </a>
 <form method="POST" action="{% url 'refresh_potd_status' %}">
   {% csrf_token %}
+  <input type="hidden" name="platform_id" value="{{ id }}">
   <a href="{{ potd.solution_url }}" class="btn btn-success mx-3"><button type="submit">Refresh</button></a>
 </form>
       </div>
@@ -80,10 +65,15 @@
     </div>
   </div>
   <div class="flex-4/12 flex flex-col bg-gray-800 m-4 p-4 rounded-lg">
-    <h1 class="text-blue-400 text-2xl font-bold mb-4">CodeChef</h1>
+    <h1 class="text-blue-400 text-2xl font-bold mb-4">{{ platform }}</h1>
     <h3 class="text-white mb-4">
-      Codechef Streak: {{user_profile.codechef_streak}} |
+      {% if id==1 %}
+      {{platform}} Streak: {{user_profile.codechef_streak}} |
       Ultimate Streak: {{user_profile.ultimate_streak}}
+      {% elif id==2 %}
+      {{platform}} Streak: {{user_profile.codeforces_streak}} |
+      Ultimate Streak: {{user_profile.ultimate_streak}}
+      {% endif %}
     </h3>
     <div class="font-gabarito text-white font-bold text-4xl m-3 ">Leaderboard</div>
         <div class="flex flex-col w-full">
@@ -114,7 +104,6 @@
         </div>
   </div>
 </div>
-{% endif %}
 
 <script>
   window.onload = function () {
