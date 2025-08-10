@@ -27,7 +27,7 @@
     {% endif %}
       <div class="">Today's Problem: {{ potd.title }}</div>
       <div class="md:ml-auto gap-4 flex">
-        <a href="https://www.codechef.com/problems/{{ potd.problem_id }}" target="_blank" class="btn btn-error md:mx-3 w-auto">
+        <a href="{{ url }}{{ potd.problem_id }}" target="_blank" class="btn btn-error md:mx-3 w-auto">
   View Problem
 </a>
 <form method="POST" action="{% url 'refresh_potd_status' %}">
@@ -51,7 +51,7 @@
               {{ prob.assigned_date }}
             </div>
             <div class="flex">
-            <a href="https://www.codechef.com/problems/{{ prob.problem_id }}" target="_blank" class="btn bg-orange-600 md:mx-3 mx-1">
+            <a href="{{ url }}{{ prob.problem_id }}" target="_blank" class="btn bg-orange-600 md:mx-3 mx-1">
                 View problem
             </a>
             <a href="{{ prob.solutionurl }}" class="btn btn-outline md:mx-3 mx-1">
@@ -67,10 +67,10 @@
   <div class="flex-4/12 flex flex-col bg-gray-800 m-4 p-4 rounded-lg">
     <h1 class="text-blue-400 text-2xl font-bold mb-4">{{ platform }}</h1>
     <h3 class="text-white mb-4">
-      {% if id==1 %}
+      {% if id == 1 %}
       {{platform}} Streak: {{user_profile.codechef_streak}} |
       Ultimate Streak: {{user_profile.ultimate_streak}}
-      {% elif id==2 %}
+      {% elif id == 2 %}
       {{platform}} Streak: {{user_profile.codeforces_streak}} |
       Ultimate Streak: {{user_profile.ultimate_streak}}
       {% endif %}

@@ -30,7 +30,7 @@
             <img src="{% static 'slider-images/img03.png' %}" alt="" class="platform-logo">
             <div class="flex flex-col m-4">
                 <div class="text-2xl mb-2">Codeforces</div>
-                <a href=""><div class="btn btn-error shadow-md shadow-gray-900" disabled ="disabled">Coming soon!</div></a>
+                <a href="{% url 'codeforces' %}"><div class="btn btn-success shadow-md shadow-gray-900">Solve</div></a>
             </div>
             <div class="text-lg ml-auto">{{ user_data.codeforces_streak }} <img class="h-9 inline" src="{% static 'feature-icons/streak_flame.png' %}" alt=""></div>
         </div>

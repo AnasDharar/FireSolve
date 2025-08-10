@@ -63,5 +63,5 @@ def check_user(username, contestId, index):
 
     return False
 
-ans = check_user('salaarsenpai', 2118, 'B')
-print(ans)
+# ans = check_user('salaarsenpai', 2118, 'B')
+# print(ans)
