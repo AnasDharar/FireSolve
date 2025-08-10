@@ -3,10 +3,15 @@ import time
 import hashlib
 import requests
 import random
-
+from environ import Env
 # Your Codeforces API keys
-API_KEY = "9b376560f00aa436baaa4ebe0d6884059f0fc41f"
-API_SECRET = "aa013094fa13c9d94640f86832d0b75ec83bfbf3"
+env = Env(
+    # Set default values for environment variables
+    CF_API_KEY=(str),
+    CF_SECRET_API_KEY=(str),
+)
+API_KEY = env("CF_API_KEY")
+API_SECRET = env("CF_SECRET_API_KEY")
 rand = str(random.randint(100000, 999999))  # Random number for signature
 t = str(int(time.time()))
 

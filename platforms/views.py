@@ -7,6 +7,7 @@ from .models import Platform, Problem, POTDStatus
 import datetime
 from django.urls import reverse
 from pyscripts import codechef_scraping
+from pyscripts import codeforces_scraping
 from .forms import BulkProblemForm
 from django.contrib import messages
 from django.db import transaction
