@@ -77,7 +77,7 @@ def codeforces(request):
         'platform': platform,
         'id': platform_id,
         'user_profile': user_profile,
-        'url':'https://www.codechef.com/problems/',
+        'url':'https://www.codeforces.com/problemset/problem/',
         'potd': potd,
         'past_problems': past_problems,
         'alreadydone': alreadydone,
