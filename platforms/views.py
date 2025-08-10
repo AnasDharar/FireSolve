@@ -92,8 +92,8 @@ def refresh_potd_status(request):
         return redirect(reverse('codechef'))
 
     if request.method=="POST":
-        logger.info(f"Refreshing POTD status for platform ID: {platform_id} for user: {request.user.username}")
         platform_id = request.POST.get('platform_id')
+        logger.info(f"Refreshing POTD status for platform ID: {platform_id} for user: {request.user.username}")
         user = request.user
         logger.info(f"Refreshing POTD status for platform ID: {platform_id} for user: {request.user.username}")
 
@@ -168,9 +168,37 @@ def refresh_potd_status(request):
                     logger.info(f"CodeChef scraping complete: {user.username} did not solve the Problem of the Day.")
                     messages.error(request, "You have not solved today's Problem of the Day")
             elif platform_id=="2":
-                issolved = codeforces.check_user(user_profile.codeforces_id, potd.contest_id, potd.problem_index)
-            
+                contestId,probIndex = potd.problem_id.split('/')
+                issolved = codeforces_scraping.check_user(user_profile.codeforces_id,contestId,probIndex)
+                if issolved:
+                    logger.info(f"Codeforces scraping complete: {user.username} solved the Problem of the Day.")
+                    try:
+                        if POTDStatus.objects.filter(user=user, problem=potd).exists():
+                            messages.success(request, "Congratulations 🎉 You have already solved today's Problem of the Day.")
+                            return redirect(reverse('codeforces'))
 
+                        POTDStatus.objects.create(
+                            user=user,
+                            problem=potd,
+                            solved_date=datetime.date.today(),
+                        )
+
+                        user_profile.codeforces_streak += 1
+                        user_profile.total_solved += 1
+                        user_profile.save(update_fields=['codeforces_streak', 'total_solved'])
+
+                        logger.info(f"POTD status created for {user.username}, streak: {user_profile.codeforces_streak}")
+                        messages.success(request, f"You have successfully solved the Problem of the Day! Streak: {user_profile.codeforces_streak}")
+
+                    except IntegrityError:
+                        logger.warning(f"IntegrityError caught for user {user.username}: already solved today's Problem of the Day.")
+                        messages.success(request, "Congratulations 🎉 You have already solved today's Problem of the Day.")
+                    except Exception as e:
+                        logger.error(f"Error creating POTD status for user {user.username}: {e}")
+                        messages.error(request, "An error occurred while updating your status.")
+                else:
+                    logger.info(f"Codeforces scraping complete: {user.username} did not solve the Problem of the Day.")
+                    messages.error(request, "You have not solved today's Problem of the Day")
     if platform_id == '1':
         return redirect(reverse('codechef'))
     elif platform_id == '2':

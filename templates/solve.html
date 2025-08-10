@@ -33,7 +33,7 @@
 <form method="POST" action="{% url 'refresh_potd_status' %}">
   {% csrf_token %}
   <input type="hidden" name="platform_id" value="{{ id }}">
-  <a href="{{ potd.solution_url }}" class="btn btn-success mx-3"><button type="submit">Refresh</button></a>
+  <button type="submit" class="btn btn-success">Refresh</button>
 </form>
       </div>
     </div>
