@@ -6,6 +6,11 @@ import random
 from environ import Env
 import os
 from pathlib import Path
+import logging
+
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 # Your Codeforces API keys
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -63,13 +68,13 @@ def check_user(username, contestId, index):
 
     user_submissions = preparation(usermethodName, userparams)
     if 'result' not in user_submissions or not user_submissions['result']:
-        print("No result")
+        logger.info("No result")
         return False
     # return user_submissions
     for i in range(len(user_submissions['result'])):
         if user_submissions['result'][i]['contestId'] == int(contestId) and user_submissions['result'][i]['problem']['index'] == index and user_submissions['result'][i]['verdict'] == 'OK':
             return True
-    print("No matching submission found")
+    logger.info("No matching submission found")
     return False
 
 # ans = check_user('salaarsenpai', '1890', 'A')
