@@ -27,7 +27,7 @@ def codechef(request):
 
     user_profile = UserProfile.objects.get(user=user)
 
-    if user_profile.codechef_id is not None and user_profile.codechef_id != "":
+    if user_profile.codechef_id is None or user_profile.codechef_id == "":
         return render(request, 'usernamemissing.html', {'platform': platform})
     
     problem = Problem.objects.filter(platform_id=platform_id)  # Get the problems for CodeChef
@@ -58,9 +58,10 @@ def codeforces(request):
         login_url = reverse('login')
         return HttpResponse(f"You have not logged in bro. go here -> <a href='{signup_url}'>Signup</a> or <a href='{login_url}'>Login</a>")
     user_profile = UserProfile.objects.get(user=user)
-    
-    if user_profile.codeforces_id is not None and user_profile.codeforces_id != "":
+
+    if user_profile.codeforces_id is None or user_profile.codeforces_id == "":
         return render(request, 'usernamemissing.html', {'platform': platform})
+    
     problem = Problem.objects.filter(platform_id=platform_id)  # Get the problems for Codeforces
     alreadydone = POTDStatus.objects.filter(user=user, solved_date=datetime.date.today()).first()
     today = datetime.date.today()
@@ -170,6 +171,7 @@ def refresh_potd_status(request):
                     messages.error(request, "You have not solved today's Problem of the Day")
             elif platform_id=="2":
                 contestId,probIndex = potd.problem_id.split('/')
+                print(contestId, probIndex)
                 issolved = codeforces_scraping.check_user(user_profile.codeforces_id,contestId,probIndex)
                 if issolved:
                     logger.info(f"Codeforces scraping complete: {user.username} solved the Problem of the Day.")
