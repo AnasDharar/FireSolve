@@ -171,8 +171,8 @@ def refresh_potd_status(request):
                     messages.error(request, "You have not solved today's Problem of the Day")
             elif platform_id=="2":
                 contestId,probIndex = potd.problem_id.split('/')
-                print(contestId, probIndex)
                 issolved = codeforces_scraping.check_user(user_profile.codeforces_id,contestId,probIndex)
+                
                 if issolved:
                     logger.info(f"Codeforces scraping complete: {user.username} solved the Problem of the Day.")
                     try:
