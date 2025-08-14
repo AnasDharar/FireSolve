@@ -33,7 +33,13 @@ def codechef(request):
     problem = Problem.objects.filter(platform_id=platform_id)  # Get the problems for CodeChef
     alreadydone = POTDStatus.objects.filter(user=user, solved_date=datetime.date.today()).first()
     today = datetime.date.today()
-    potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
+    try:
+        potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
+    except IndexError:
+        potd = None
+    if not potd:
+        messages.error(request, "No Problem of the Day assigned for today.")    
+        return redirect(reverse('codeforces'))
     past_problems = problem.filter(assigned_date__lt=today).order_by("-assigned_date") #this is the past problems
     leaderboard = UserProfile.objects.all().order_by('-total_solved')[:10]
     
@@ -65,13 +71,13 @@ def codeforces(request):
     problem = Problem.objects.filter(platform_id=platform_id)  # Get the problems for Codeforces
     alreadydone = POTDStatus.objects.filter(user=user, solved_date=datetime.date.today()).first()
     today = datetime.date.today()
-    potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
+    try:
+        potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
+    except IndexError:
+        potd = None
     if not potd:
-        messages.error(request, "No Problem of the Day assigned for today.")
-        if platform_id == '1':
-            return redirect(reverse('codechef'))
-        elif platform_id == '2':
-            return redirect(reverse('codeforces'))
+        messages.error(request, "No Problem of the Day assigned for today.")    
+        return redirect(reverse('codeforces'))
     past_problems = problem.filter(assigned_date__lt=today).order_by("-assigned_date") #this is the past problems
     leaderboard = UserProfile.objects.all().order_by('-total_solved')[:10]
     # print(potd)
