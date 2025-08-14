@@ -37,9 +37,9 @@ def codechef(request):
         potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
     except IndexError:
         potd = None
-    if not potd:
-        messages.error(request, "No Problem of the Day assigned for today.")    
-        return redirect(reverse('codeforces'))
+    # if not potd:
+    #     messages.error(request, "No Problem of the Day assigned for today.")    
+    #     return redirect(reverse('codeforces'))
     past_problems = problem.filter(assigned_date__lt=today).order_by("-assigned_date") #this is the past problems
     leaderboard = UserProfile.objects.all().order_by('-total_solved')[:10]
     
@@ -75,9 +75,9 @@ def codeforces(request):
         potd = problem.filter(assigned_date=today)[0] #this is the problem of the day
     except IndexError:
         potd = None
-    if not potd:
-        messages.error(request, "No Problem of the Day assigned for today.")    
-        return redirect(reverse('codeforces'))
+    # if not potd:
+    #     messages.error(request, "No Problem of the Day assigned for today.")    
+    #     return redirect(reverse('codeforces'))
     past_problems = problem.filter(assigned_date__lt=today).order_by("-assigned_date") #this is the past problems
     leaderboard = UserProfile.objects.all().order_by('-total_solved')[:10]
     # print(potd)

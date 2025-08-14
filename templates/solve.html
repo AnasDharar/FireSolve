@@ -25,6 +25,19 @@
     {% if not alreadydone %}
     <div class="flex p-4 flex-col md:flex-row w-full items-center md:text-2xl text-md bg-gray-500 rounded-lg shadow-lg gap-4">
     {% endif %}
+    {% if potd == None %}
+    <div class="">No POTD assigned for today</div>
+      <div class="md:ml-auto gap-4 flex">
+        <a href="#" target="_blank" class="btn btn-error md:mx-3 w-auto">
+  View Problem
+</a>
+<form method="" action="">
+  {% csrf_token %}
+  <input type="hidden" name="platform_id" value="{{ id }}">
+  <button type="submit" class="btn btn-success">Refresh</button>
+</form>
+      </div>
+    {% else %}
       <div class="">Today's Problem: {{ potd.title }}</div>
       <div class="md:ml-auto gap-4 flex">
         <a href="{{ url }}{{ potd.problem_id }}" target="_blank" class="btn btn-error md:mx-3 w-auto">
@@ -36,6 +49,7 @@
   <button type="submit" class="btn btn-success">Refresh</button>
 </form>
       </div>
+      {% endif %}
     </div>
 
     <div class="flex flex-col justify-center w-full">
