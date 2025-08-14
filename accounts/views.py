@@ -21,7 +21,7 @@ def signup(request):
     cache_key = f"signup_attempts_{ip_address}"
     attempts = cache.get(cache_key, 0)
     
-    if attempts >= 3:  # Max 3 signup attempts per hour per IP
+    if attempts >= 10:  # Max 10 signup attempts per hour per IP
         messages.error(request, "Too many signup attempts. Please try again later.")
         return render(request, 'signup.html', {'form': None})
     

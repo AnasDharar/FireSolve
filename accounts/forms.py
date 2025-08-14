@@ -24,7 +24,6 @@ class CustomUserCreationForm(DjangoUserCreationForm):
     website = forms.CharField(
         required=False,
         widget=forms.HiddenInput,
-        help_text="Leave this field empty"
     )
     
     # Timestamp field to prevent too-fast submissions
