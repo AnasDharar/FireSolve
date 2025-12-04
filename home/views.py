@@ -13,7 +13,7 @@ def dashboard(request):
         user_profile = UserProfile.objects.get(user=request.user)
         leaderboard = UserProfile.objects.all().order_by('-ultimate_streak')[:10]
         # print(leaderboard)
-        return render(request,'index.html', {'user_data': user_profile, 'leaderboard': leaderboard})
+        return render(request,'index2.html', {'user_data': user_profile, 'leaderboard': leaderboard})
 
     return redirect('/')
     

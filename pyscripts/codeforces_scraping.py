@@ -3,25 +3,16 @@ import time
 import hashlib
 import requests
 import random
-from environ import Env
-import os
 from pathlib import Path
+from django.conf import settings
 import logging
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 # Your Codeforces API keys
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-env = Env(
-    # Set default values for environment variables
-    CF_API_KEY=(str),
-    CF_SECRET_API_KEY=(str),
-)
-env.read_env(os.path.join(BASE_DIR, '.env'))
-API_KEY = env("CF_API_KEY")
-API_SECRET = env("CF_SECRET_API_KEY")
+API_KEY = settings.CF_API_KEY
+API_SECRET = settings.CF_SECRET_API_KEY
 rand = str(random.randint(100000, 999999))  # Random number for signature
 t = str(int(time.time()))
 

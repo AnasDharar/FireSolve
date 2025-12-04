@@ -9,6 +9,8 @@ env = Env(
     ALLOWED_HOSTS=(list, ['localhost', '127.0.0.1']),
     SECRET_KEY=(str, 'your-default-secret-key'),
     SIGNUP_SECRET_KEY=(str),
+    CF_API_KEY=(str, ''),
+    CF_SECRET_API_KEY=(str, ''),
 )
 # ------------------------------------------------------------------
 # Paths
@@ -26,6 +28,9 @@ SIGNUP_SECRET_KEY = env("SIGNUP_SECRET_KEY")
 
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+
+CF_API_KEY = env("CF_API_KEY")
+CF_SECRET_API_KEY = env("CF_SECRET_API_KEY")
 
 # reCAPTCHA settings for development
 if DEBUG:
