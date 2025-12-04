@@ -1,7 +1,6 @@
 import os
 from environ import Env
 from pathlib import Path # <--- ADD THIS IMPORT
-
 env = Env(
     # Set default values for environment variables
     DEBUG=(bool, False),  # Default to False for production
@@ -55,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_browser_reload',
 ]
 # ------------------------------------------------------------------
 LOGGING = {
@@ -84,6 +84,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'potd.urls'
