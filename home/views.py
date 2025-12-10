@@ -5,9 +5,12 @@ from users.models import UserProfile
 from django.contrib.auth import authenticate,logout, login
 from django.db import IntegrityError
 import logging
+from potd.settings import DEBUG
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 def dashboard(request):
+    if DEBUG:
+        return render(request, 'index2.html', {'user_data': None, 'leaderboard': None})
     if request.user.is_anonymous==False:
         logger.info(f"User {request.user.username} logged in")
         user_profile = UserProfile.objects.get(user=request.user)

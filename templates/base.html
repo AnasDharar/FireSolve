@@ -5,84 +5,97 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FireSolve</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Gabarito:wght@400..900&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Load Tailwind first -->
+
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
-    <!-- Then custom styles -->
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <link rel="stylesheet" href="{% static 'landing.css' %}" />
     <link rel="stylesheet" href="{% static 'index.css' %}" />
+    
     <link
       rel="icon"
       type="image/png"
       href="{% static 'logos/title-image.png' %}"
     />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
 
     {% block extra_head %} {% endblock %}
   </head>
-  <body class="flex flex-col min-h-screen bg-gray-900 font-gabarito">
-    <div class="sm:px-8 sm:py-8 navbar">
-      <a href="{% url 'dashboard' %}" class="flex items-center"
-        ><img
-          class="sm:h-14 sm:w-50 h-8 w-27"
-          src="{% static 'logos/logo-1-transparent.png' %}"
-          alt="FireSolve"
-      /></a>
-      <div class="buttons">
-        {%block buttons%} {% if user.is_authenticated or user_data.is_owner %}
-        <a href="{% url 'profile' request.user.username %}"
-          ><span
-            class="h-8 w-16 sm:h-10 sm:w-20 btn btn-outline border-white text-white"
-            >Profile</span
-          ></a
-        >
-        <a href="{% url 'logout' %}"
-          ><span class="h-8 w-16 sm:h-10 sm:w-20 btn btn-soft">Logout</span></a
-        >
-        {% else %}
-        <div class="buttons">
-          <a href="{% url 'signup' %}"
-            ><span class="h-8 w-16 sm:h-10 sm:w-20 btn btn-secondary"
-              >Signup</span
-            ></a
-          >
-          <a href="{% url 'login' %}"
-            ><span
-              class="h-8 w-16 sm:h-10 sm:w-20 btn btn-outline btn-secondary"
-              >Login</span
-            ></a
-          >
+  
+  <body class="flex flex-col min-h-screen bg-[#0a0a0a] font-gabarito text-white antialiased selection:bg-orange-500 selection:text-white">
+    
+    <nav class="sticky top-0 z-50 w-full backdrop-blur-xl bg-black/50 border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          
+          <a href="{% url 'dashboard' %}" class="flex-shrink-0 transition-opacity hover:opacity-80">
+            <img class="h-10 w-auto sm:h-12" src="{% static 'logos/logo-1-transparent.png' %}" alt="FireSolve" />
+          </a>
+
+          <div class="flex items-center gap-4">
+            {% block buttons %} 
+              {% if user.is_authenticated or user_data.is_owner %}
+                <a href="{% url 'profile' request.user.username %}" class="hidden sm:block">
+                  <span class="px-5 py-2.5 rounded-lg border border-white/20 text-sm font-medium text-white hover:bg-white/10 transition-all">
+                    Profile
+                  </span>
+                </a>
+                <a href="{% url 'logout' %}">
+                  <span class="px-5 py-2.5 rounded-lg bg-red-500/10 border border-red-500/20 text-sm font-medium text-red-400 hover:bg-red-500/20 transition-all">
+                    Logout
+                  </span>
+                </a>
+              {% else %}
+                <a href="{% url 'signup' %}">
+                  <span class="px-5 py-2.5 rounded-lg bg-orange-600 text-white text-sm font-medium hover:bg-orange-700 transition-all shadow-[0_0_15px_rgba(234,88,12,0.3)]">
+                    Signup
+                  </span>
+                </a>
+                <a href="{% url 'login' %}">
+                  <span class="px-5 py-2.5 rounded-lg border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-all">
+                    Login
+                  </span>
+                </a>
+              {% endif %} 
+            {% endblock buttons %}
+          </div>
         </div>
-        {% endif %} {%endblock buttons%}
       </div>
-    </div>
-    <main class="flex-grow font-poppins">
+    </nav>
+
+    <main class="flex-grow font-poppins relative">
       {% block content %} {% endblock content %}
     </main>
-    <div class="footer">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img
-            src="{% static 'logos/logo-1-transparent.png' %}"
-            alt="FireSolve Logo"
-          />
-        </div>
-        <div class="footer-links">
-          <a href="/about">About Us</a>
-          <a href="/contact">Contact</a>
+
+    <footer class="border-t border-white/5 bg-black/40 backdrop-blur-md mt-auto">
+      <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+          
+          <div class="flex items-center space-x-3">
+            <img
+              class="h-8 w-auto opacity-80 grayscale hover:grayscale-0 transition-all duration-300"
+              src="{% static 'logos/logo-1-transparent.png' %}"
+              alt="FireSolve Logo"
+            />
+          </div>
+
+          <div class="flex space-x-8">
+            <a href="/about" class="text-sm text-gray-400 hover:text-orange-400 transition-colors">About Us</a>
+            <a href="/contact" class="text-sm text-gray-400 hover:text-orange-400 transition-colors">Contact</a>
+            <a href="#" class="text-sm text-gray-400 hover:text-orange-400 transition-colors">Privacy</a>
+          </div>
+
+          <div class="text-sm text-gray-600">
+            &copy; 2025 FireSolve. All rights reserved.
+          </div>
         </div>
       </div>
-      <div class="footer-text">&copy; 2025 FireSolve. All rights reserved.</div>
-    </div>
+    </footer>
+
   </body>
 </html>
