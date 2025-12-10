@@ -1,144 +1,154 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-<div class="first-view">
-    <div class="slider-container">
-        {% for j in range0to3 %}
-            {% if j|divisibleby:2 %}
-                <div class="slider">
-            {% else %}
-                <div class="slider" reverse="true">
-            {% endif %}
-                <div class="list">
-                    {% for i in range1to9 %}
-                        <div class="item" style="--position: {{i}}">
-                            <img src="../static/slider-images/img0{{i}}.png" alt="landing0000001">
-                        </div>
-                    {% endfor %}
-                </div>
+
+<div class="min-h-screen bg-[#0a0a0a] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-[#0a0a0a] to-black text-white overflow-x-hidden font-gabarito">
+
+    <div class="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden flex flex-col items-center justify-center text-center px-4">
+        
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-orange-600/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+        <div id="hoverCard" class="pointer-events-none fixed px-4 py-2 bg-black test-white border-2 border-neutral-600 font-gabarito z-50 rounded-2xl hidden">Name</div>
+        <div class="relative z-10 max-w-4xl mx-auto space-y-6">
+            <h1 class="font-instrument-serif text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">FireSolve</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Your daily companion for coding mastery. Upskill by solving one problem daily from the world's top platforms.
+            </p>
+            
+            <div class="pt-4">
+                <a href="{% url 'signup' %}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-orange-600 rounded-xl hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:shadow-[0_0_30px_rgba(234,88,12,0.7)] hover:-translate-y-1">
+                    Get Started Now
+                </a>
             </div>
-        {% endfor %}
-    </div>
-    <div class="first-view-text text-white">
-        <h1>Welcome to FireSolve</h1>
-        <p>FireSolve is a go to platform for programmers that want to upskill by solving one problem daily from the top sites like LeetCode, GeeksforGeeks, Codechef and Codeforces.</p>
-        <a href="{% url 'signup' %}" class="get-started main-button">Get-Started</a>
-    </div>
-</div>
-{% comment %} ------------------------------- FEATURES ----------------------------- {% endcomment %}
-<div class="second-view">
-    
-    <div class="features">
-    
-        <div class="title"> Features </div>
-        <div class="containers">
-            <div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
-  <figure>
-    <img
-      src="{% static 'feature-icons/bargraph.png' %}"
-      alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Difficulty Progression</h2>
-    <p>Problems start easy at the beginning of the month and scale up by the end, allowing smooth skill growth</p>
-    <div class="card-actions justify-end">
-    </div>
-  </div>
-</div>
-<div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
-  <figure>
-    <img
-      src="{% static 'feature-icons/flame.png' %}"
-      alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Streak system</h2>
-    <p>Track your daily consistency. Solve all POTDs to maintain your streak — one miss resets the count</p>
-    <div class="card-actions justify-end">
-    </div>
-  </div>
-</div>
-<div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
-  <figure>
-    <img
-      src="{% static 'feature-icons/potd.png' %}"
-      alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Unified POTD Tracker</h2>
-    <p>Aggregate POTDs from all platforms - all in one dashboard. Save time and focus on solving</p>
-    <div class="card-actions justify-end">
-    </div>
-  </div>
-</div>
-<div class="card bg-base-100 w-96 sm:w-70 shadow-sm">
-  <figure>
-    <img
-      src="{% static 'feature-icons/leaderboard.png' %}" alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">Competitive Leaderboard</h2>
-    <p>Track your rank based on streak length, number of problems solved, and speed of submissions</p>
-    <div class="card-actions justify-end">
-    </div>
-  </div>
-</div>
-            <!-- <div class="container">
-                <img src="../static/feature-icons/trending-up.svg" class="feature-img" alt="feature1" />
-                <div class="temp">
-                    <div class="container-title">Difficulty Progression</div>
-                    <div class="container-text">Problems start easy at the beginning of the month and scale up by the end, allowing smooth skill growth.</div>
+        </div>
+
+        <div class="relative z-10 mt-16 max-w-5xl mx-auto">
+            <p class="text-sm text-gray-500 uppercase tracking-widest mb-8 font-semibold">Supported Platforms</p>
+            
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8 opacity-90">
+                {% for i in "123"|make_list %} 
+                <div class="group relative p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-orange-500/50 transition-all duration-300 hover:shadow-[0_0_15px_rgba(234,88,12,0.2)] hover:-translate-y-1 " onmouseenter="platformShow(event, '{{i}}')" onmousemove="platformHover(event)" onmouseleave="hide(event)">
+                    <img class="h-12 w-12 md:h-16 md:w-16 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" 
+                         src="{% static 'slider-images/img0'|add:i|add:'.png' %}" 
+                         alt="Platform {{ i }}">
                 </div>
+                {% endfor %}
             </div>
-            <div class="container">
-                <img src="../static/feature-icons/flame.svg" class="feature-img" alt="feature2">
-                <div class="temp">
-                <div class="container-title">Streak system</div>
-                <div class="container-text">Track your daily consistency. Solve all POTDs to maintain your streak — one miss resets the count.</div>
-                </div>
-            </div>
-            <div class="container">
-                <img src="../static/feature-icons/hand-point-up.svg" class="feature-img" alt="feature3">
-                <div class="temp">
-                <div class="container-title">Unified POTD Tracker</div>
-                <div class="container-text">Aggregate POTDs from all platforms - all in one dashboard. Save time and focus on solving.</div>
-                </div>
-            </div>
-            <div class="container">
-                <img src="../static/feature-icons/bar-chart-2.svg" class="feature-img" alt="feature4">
-                <div class="temp">
-                <div class="container-title">Competitive Leaderboard</div>
-                <div class="container-text">Track your rank based on streak length, number of problems solved, and speed of submissions.</div>
-                </div>
-            </div> -->
         </div>
     </div>
+
+    <div class="py-24 bg-black/40 backdrop-blur-sm border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-instrument-serif text-4xl md:text-5xl font-bold mb-4">Powerful Features</h2>
+                <div class="h-1 w-20 bg-orange-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-12 w-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
+                        <img src="{% static 'feature-icons/bargraph.png' %}" class="h-6 w-6 invert opacity-80" alt="Difficulty" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Difficulty Progression</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Problems start easy and scale up by month's end, ensuring smooth skill growth.</p>
+                </div>
+
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-red-500/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-12 w-12 bg-red-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
+                        <img src="{% static 'feature-icons/flame.png' %}" class="h-6 w-6 invert opacity-80" alt="Streak" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Streak System</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Track daily consistency. Solve all POTDs to keep your flame alive—don't miss a day.</p>
+                </div>
+
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-12 w-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
+                        <img src="{% static 'feature-icons/potd.png' %}" class="h-6 w-6 invert opacity-80" alt="Tracker" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Unified Tracker</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">All POTDs in one dashboard. Save time and focus purely on solving problems.</p>
+                </div>
+
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-yellow-500/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="h-12 w-12 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-yellow-500/20 transition-colors">
+                        <img src="{% static 'feature-icons/leaderboard.png' %}" class="h-6 w-6 invert opacity-80" alt="Leaderboard" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Leaderboard</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Compete based on streak length, number of solved problems, and speed.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="py-24 container mx-auto px-4 relative">
+        <div class="text-center mb-20">
+            <h2 class="font-instrument-serif text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+            <p class="text-gray-400">Five steps to consistency</p>
+        </div>
+
+        <div class="hidden md:block absolute top-[60%] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent -z-10"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 max-w-6xl mx-auto">
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">1</div>
+                <h4 class="font-bold text-lg mb-2">Pick Platform</h4>
+                <p class="text-sm text-gray-400">Choose from Codechef, Leetcode, or Codeforces.</p>
+            </div>
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">2</div>
+                <h4 class="font-bold text-lg mb-2">Solve POTD</h4>
+                <p class="text-sm text-gray-400">Click solve and tackle the problem of the day.</p>
+            </div>
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">3</div>
+                <h4 class="font-bold text-lg mb-2">Submit</h4>
+                <p class="text-sm text-gray-400">Submit your solution on the official platform.</p>
+            </div>
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">4</div>
+                <h4 class="font-bold text-lg mb-2">Track</h4>
+                <p class="text-sm text-gray-400">We automatically verify and update your stats.</p>
+            </div>
+            <div class="flex flex-col items-center text-center group">
+                <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-orange-500 mb-6 border-orange-500/50 shadow-[0_0_15px_rgba(234,88,12,0.3)] group-hover:scale-110 transition-all duration-300 z-10">5</div>
+                <h4 class="font-bold text-lg mb-2">Repeat</h4>
+                <p class="text-sm text-gray-400">Come back tomorrow to keep the fire burning.</p>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<div class="how-it-works">
-    <div class="how-title">How It Works</div>
-    <div class="steps-container">
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-text">Pick a platform</div>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-text">Solve its problem of the day</div>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-text">Submit the solution</div>
-        </div>
-        <div class="step">
-            <div class="step-number">4</div>
-            <div class="step-text">Track progress</div>
-        </div>
-        <div class="step">
-            <div class="step-number">5</div>
-            <div class="step-text">Come back tomorrow and maintain the streak</div>
-        </div>
-    </div>
-</div>
-
+<script>
+    let hoverCard = document.getElementById("hoverCard");
+    function platformShow(e,i){
+        let name = "";
+        if(i=="1"){
+            name = "Codechef";
+        }else if (i=="2"){
+            name = "LeetCode";
+        }else{
+            name = "CodeForces";
+        }
+        console.log(hoverCard);
+        hoverCard.innerText = name;
+        hoverCard.classList.remove("hidden");
+    }
+    function platformHover(e){
+        
+        let x = e.clientX+15;
+        let y = e.clientY+15;
+        hoverCard.style.left = x + 'px';
+        hoverCard.style.top = y + 'px';
+        console.log("Hover is on:" + name);
+    }
+    function hide(e){
+        hoverCard.classList.add('hidden');
+    }
+</script>
 {% endblock content %}
