@@ -11,3 +11,24 @@
   --font-instrument-serif: "Instrument Serif", serif;
 }
 /* Fonts we have: Instrument Serif, Inter, Roboto, Gabarito */
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.fade-in.visible {
+  animation: fadeInUp 0.8s ease-out forwards;
+}

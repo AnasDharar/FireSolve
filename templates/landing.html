@@ -3,29 +3,29 @@
 
 {% block content %}
 
-<div class="min-h-screen bg-[#0a0a0a] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-[#0a0a0a] to-black text-white overflow-x-hidden font-gabarito">
+<div class="min-h-screen bg-[#0a0a0a] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-[#0a0a0a] to-black text-white overflow-hidden font-gabarito">
 
-    <div class="relative pt-24 pb-20 lg:pt-32 lg:pb-32 overflow-hidden flex flex-col items-center justify-center text-center px-4">
-        
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-orange-600/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+    <div class="relative pt-24 pb-12 lg:pt-32 lg:pb-16 overflow-hidden flex flex-col items-center justify-center text-center px-4">
+        <div class="absolute top-0 left-0 -translate-x-1/2 w-3/4 h-[500px] bg-orange-600/40 blur-[120px] rounded-full pointer-events-none z-0"></div>
+        <div class="absolute top-0 right-0 translate-x-1/2 w-3/4 h-[500px] bg-orange-600/40 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
         <div id="hoverCard" class="pointer-events-none fixed px-4 py-2 bg-black test-white border-2 border-neutral-600 font-gabarito z-50 rounded-2xl hidden">Name</div>
-        <div class="relative z-10 max-w-4xl mx-auto space-y-6">
+        <div class="relative z-10 max-w-4xl mx-auto space-y-6 fade-in">
             <h1 class="font-instrument-serif text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">FireSolve</span>
+                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500 fade-in" style="animation-delay: 0.2s;">FireSolve</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed fade-in">
                 Your daily companion for coding mastery. Upskill by solving one problem daily from the world's top platforms.
             </p>
             
-            <div class="pt-4">
+            <div class="">
                 <a href="{% url 'signup' %}" class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-orange-600 rounded-xl hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:shadow-[0_0_30px_rgba(234,88,12,0.7)] hover:-translate-y-1">
                     Get Started Now
                 </a>
             </div>
         </div>
 
-        <div class="relative z-10 mt-16 max-w-5xl mx-auto">
+        <div class="relative z-10 mt-8 max-w-5xl mx-auto fade-in">
             <p class="text-sm text-gray-500 uppercase tracking-widest mb-8 font-semibold">Supported Platforms</p>
             
             <div class="flex flex-wrap justify-center gap-6 md:gap-8 opacity-90">
@@ -39,46 +39,94 @@
             </div>
         </div>
     </div>
+    <div class="fade-in grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-8 max-w-7xl mx-auto md:px-0 w-3/4">
+        <div class="group m-6 h-auto flex flex-col items-center justify-center text-center">
+            <div class="text-5xl text-orange-600 font-bold font-gabarito"><span class="counter" data-target="50">0</span>+</div>
+            <div class="relative text-2xl font-bold cursor-pointer
+                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                after:w-0 after:bg-orange-400 after:transition-all after:duration-300
+                group-hover:after:w-full text-center md:text-left pb-2">Problems</div>
+        </div>
 
-    <div class="py-24 bg-black/40 backdrop-blur-sm border-t border-white/5">
+        <div class="group m-6 h-auto flex flex-col items-center justify-center text-center">
+            <div class="text-5xl text-orange-600 font-bold font-gabarito"><span class="counter" data-target="200">0</span>+</div>
+            <div class="relative text-2xl font-bold cursor-pointer
+                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                after:w-0 after:bg-orange-400 after:transition-all after:duration-300
+                group-hover:after:w-full text-center md:text-left pb-2">Registered Users</div>
+        </div>
+
+        <div class="group m-6 h-auto flex flex-col items-center justify-center text-center">
+            <div class="text-5xl text-orange-600 font-bold font-gabarito"><span class="counter" data-target="100">0</span>%</div>
+            <div class="relative text-2xl font-bold cursor-pointer
+                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                after:w-0 after:bg-orange-400 after:transition-all after:duration-300
+                group-hover:after:w-full text-center md:text-left pb-2">Free Access </div>
+        </div>
+
+        </div>
+
+    </div>
+    <div class="py-12 bg-black/40 backdrop-blur-sm border-t border-white/5">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-orange-600/40 blur-[120px] rounded-full pointer-events-none -z-1"></div>
         <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 fade-in">
                 <h2 class="font-instrument-serif text-4xl md:text-5xl font-bold mb-4">Powerful Features</h2>
                 <div class="h-1 w-20 bg-orange-500 mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto md:w-full w-[80%]">
                 
-                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-12 w-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-500/20 transition-colors">
-                        <img src="{% static 'feature-icons/bargraph.png' %}" class="h-6 w-6 invert opacity-80" alt="Difficulty" />
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-white/60 border-2 transition-all duration-300 hover:-translate-y-1 fade-in" style="animation-delay: 0.1s">
+                    <div class="h-12 w-12 bg-orange-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+                        <img src="{% static 'feature-icons/graph.png' %}" class="h-12 w-12" alt="Difficulty" />
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Difficulty Progression</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Problems start easy and scale up by month's end, ensuring smooth skill growth.</p>
+                    <h3 class="relative text-xl font-bold cursor-pointer
+                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                after:w-0 after:bg-orange-400 after:transition-all after:duration-300
+                group-hover:after:w-full text-center md:text-left">
+                        Difficulty Progression
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-white duration-350">Problems start easy and scale up by month's end, ensuring smooth skill growth.</p>
                 </div>
 
-                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-red-500/30 transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-12 w-12 bg-red-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-                        <img src="{% static 'feature-icons/flame.png' %}" class="h-6 w-6 invert opacity-80" alt="Streak" />
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-white/60 border-2 transition-all duration-300 hover:-translate-y-1 fade-in">
+                    <div class="h-12 w-12 bg-red-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+                        <img src="{% static 'feature-icons/fire.png' %}" class="h-12 w-12 invert" alt="Streak" />
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Streak System</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Track daily consistency. Solve all POTDs to keep your flame alive—don't miss a day.</p>
+                    <h3 class="relative text-xl font-bold cursor-pointer
+                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                after:w-0 after:bg-orange-400 after:transition-all after:duration-300
+                group-hover:after:w-full text-center md:text-left">
+                        Streak System
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-white duration-350">Track daily consistency. Solve all POTDs to keep your flame alive—don't miss a day.</p>
                 </div>
 
-                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-12 w-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
-                        <img src="{% static 'feature-icons/potd.png' %}" class="h-6 w-6 invert opacity-80" alt="Tracker" />
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-white/60 border-2 transition-all duration-300 hover:-translate-y-1  fade-in">
+                    <div class="h-12 w-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+                        <img src="{% static 'feature-icons/organization-chart.png' %}" class="h-12 w-12 invert" alt="Tracker" />
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Unified Tracker</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">All POTDs in one dashboard. Save time and focus purely on solving problems.</p>
+                    <h3 class="relative text-xl font-bold cursor-pointer
+                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                after:w-0 after:bg-orange-400 after:transition-all after:duration-300
+                group-hover:after:w-full text-center md:text-left">
+                        Unified Tracker
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-white duration-350">All POTDs in one dashboard. Save time and focus purely on solving problems.</p>
                 </div>
 
-                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:border-yellow-500/30 transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-12 w-12 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-yellow-500/20 transition-colors">
-                        <img src="{% static 'feature-icons/leaderboard.png' %}" class="h-6 w-6 invert opacity-80" alt="Leaderboard" />
+                <div class="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-white/60 border-2 transition-all duration-300 hover:-translate-y-1  fade-in">
+                    <div class="h-12 w-12 bg-yellow-500/10 rounded-xl flex items-center justify-center mb-4 transition-colors">
+                        <img src="{% static 'feature-icons/podium.png' %}" class="h-12 w-12 invert" alt="Leaderboard" />
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">Leaderboard</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Compete based on streak length, number of solved problems, and speed.</p>
+                    <h3 class="relative text-xl font-bold cursor-pointer
+                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px]
+                after:w-0 after:bg-orange-400 after:transition-all after:duration-300
+                group-hover:after:w-full text-center md:text-left">
+                        Leaderboard
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed group-hover:text-white duration-350">Compete based on streak length, number of solved problems, and speed.</p>
                 </div>
 
             </div>
@@ -86,7 +134,7 @@
     </div>
 
     <div class="py-24 container mx-auto px-4 relative">
-        <div class="text-center mb-20">
+        <div class="text-center mb-20 fade-in">
             <h2 class="font-instrument-serif text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
             <p class="text-gray-400">Five steps to consistency</p>
         </div>
@@ -94,27 +142,27 @@
         <div class="hidden md:block absolute top-[60%] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent -z-10"></div>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-8 max-w-6xl mx-auto">
-            <div class="flex flex-col items-center text-center group">
+            <div class="flex flex-col items-center text-center group fade-in" style="animation-delay: 0.1s">
                 <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">1</div>
                 <h4 class="font-bold text-lg mb-2">Pick Platform</h4>
                 <p class="text-sm text-gray-400">Choose from Codechef, Leetcode, or Codeforces.</p>
             </div>
-            <div class="flex flex-col items-center text-center group">
+            <div class="flex flex-col items-center text-center group fade-in" style="animation-delay: 0.2s">
                 <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">2</div>
                 <h4 class="font-bold text-lg mb-2">Solve POTD</h4>
                 <p class="text-sm text-gray-400">Click solve and tackle the problem of the day.</p>
             </div>
-            <div class="flex flex-col items-center text-center group">
+            <div class="flex flex-col items-center text-center group fade-in" style="animation-delay: 0.3s">
                 <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">3</div>
                 <h4 class="font-bold text-lg mb-2">Submit</h4>
                 <p class="text-sm text-gray-400">Submit your solution on the official platform.</p>
             </div>
-            <div class="flex flex-col items-center text-center group">
+            <div class="flex flex-col items-center text-center group fade-in" style="animation-delay: 0.4s">
                 <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-gray-500 mb-6 group-hover:border-orange-500 group-hover:text-orange-500 group-hover:scale-110 transition-all duration-300 shadow-xl z-10">4</div>
                 <h4 class="font-bold text-lg mb-2">Track</h4>
                 <p class="text-sm text-gray-400">We automatically verify and update your stats.</p>
             </div>
-            <div class="flex flex-col items-center text-center group">
+            <div class="flex flex-col items-center text-center group fade-in" style="animation-delay: 0.5s">
                 <div class="w-16 h-16 rounded-full bg-black border border-gray-700 flex items-center justify-center font-bold text-2xl text-orange-500 mb-6 border-orange-500/50 shadow-[0_0_15px_rgba(234,88,12,0.3)] group-hover:scale-110 transition-all duration-300 z-10">5</div>
                 <h4 class="font-bold text-lg mb-2">Repeat</h4>
                 <p class="text-sm text-gray-400">Come back tomorrow to keep the fire burning.</p>
@@ -150,5 +198,60 @@
     function hide(e){
         hoverCard.classList.add('hidden');
     }
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Counter animation function
+    function animateCounter(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                element.textContent = Math.floor(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                element.textContent = target;
+            }
+        };
+
+        updateCounter();
+    }
+
+    // Observer for counter animations
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe all elements with fade-in class and counters
+    document.addEventListener('DOMContentLoaded', () => {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach(el => observer.observe(el));
+
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => counterObserver.observe(counter));
+    });
+
 </script>
 {% endblock content %}
