@@ -1,35 +1,87 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block extra_head %}
 <link href="{% static 'output.css' %}" rel="stylesheet">
-<link href="../static/output.css" rel="stylesheet">
+{% endblock %}
 {% block content %}
-<form method="POST" action="{% url 'login' %}" class="flex items-center justify-center min-h-[80vh] bg-base-200">
-  {% csrf_token %}
-  <div class="flex justify-center items-center card w-full max-w-sm shadow-2xl bg-base-100 p-6 rounded-lg">
-    <h2 class="text-3xl p-2 font-bold text-center text-amber-100">Log In</h2>
+
+<div class="min-h-screen bg-[#0a0a0a] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-[#0a0a0a] to-black text-white font-gabarito overflow-hidden">
+  
+  <div class="relative min-h-screen flex flex-col items-center justify-center px-4 py-12">
+    <!-- Glowing background effect -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 h-96 bg-orange-600/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
     
-    <!-- Display messages directly in the form -->
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-error flex justify-center items-center mt-2 w-full text-white font-bold">
-          <span>{{ message }}</span>
+    <div class="relative z-10 w-full max-w-md space-y-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-2">
+        <h1 class="font-instrument-serif text-5xl md:text-6xl font-bold tracking-tight">
+          Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">FireSolve</span>
+        </h1>
+        <p class="text-lg text-gray-400">Sign in to continue your journey</p>
+      </div>
+
+      <!-- Form Card -->
+      <form method="POST" action="{% url 'login' %}" class="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 space-y-6 shadow-2xl">
+        {% csrf_token %}
+        
+        <!-- Display messages -->
+        {% if messages %}
+          {% for message in messages %}
+            <div class="bg-red-500/10 border border-red-500/50 rounded-xl p-4">
+              <p class="text-sm text-red-400 text-center font-semibold">{{ message }}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+        <!-- Form Fields -->
+        <div class="space-y-4">
+          <div class="flex flex-col space-y-2">
+            <label class="text-sm font-semibold text-gray-300">Username</label>
+            <div class="relative">
+              <input type="text" name="username" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300" required />
+            </div>
+          </div>
+
+          <div class="flex flex-col space-y-2">
+            <label class="text-sm font-semibold text-gray-300">Password</label>
+            <div class="relative">
+              <input type="password" name="password" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-orange-500/50 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300" required />
+            </div>
+          </div>
         </div>
-      {% endfor %}
-    {% endif %}
-    
-    <div class="form-control mt-4">
-      <label class="label"><span class="label-text">Username</span></label>
-      <input type="text" name="username" class="input input-bordered w-full" required />
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-4 text-lg font-bold text-white bg-orange-600 rounded-xl hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 shadow-[0_0_20px_rgba(234,88,12,0.5)] hover:shadow-[0_0_30px_rgba(234,88,12,0.7)] hover:-translate-y-1 transition-all duration-300">
+          Login
+        </button>
+
+        <!-- Signup Link -->
+        <p class="text-center text-sm text-gray-400">
+          Don't have an account? 
+          <a href="{% url 'signup' %}" class="text-orange-400 hover:text-orange-300 font-semibold transition-colors">Sign Up</a>
+        </p>
+      </form>
     </div>
-    <div class="form-control mt-4">
-      <label class="label"><span class="label-text">Password</span></label>
-      <input type="password" name="password" class="input input-bordered w-full" required />
-    </div>
-    <!-- <div class="mt-6"> -->
-      <button type="submit" class="btn btn-error text-white my-4">Login</button>
-    <!-- </div> -->
-    <p class="text-center text-sm mt-4"><span class=""> Don’t have an account?</span> <a href="{% url 'signup' %}" class="link link-error">Sign up</a></p>
   </div>
-</form>
+</div>
+
+<style>
+  /* Additional input styling to ensure consistency */
+  form input[type="text"],
+  form input[type="password"] {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  form input[type="text"]:focus,
+  form input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  form input::placeholder {
+    color: rgba(156, 163, 175, 0.5);
+  }
+</style>
 
 {% endblock %}
