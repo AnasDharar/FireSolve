@@ -3,10 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Not Found</title>
+    <title>User Not Found - FireSolve</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            background-image: radial-gradient(ellipse at top, #374151, #0a0a0a, #000000);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+            height: 400px;
+            background: rgba(234, 88, 12, 0.2);
+            filter: blur(120px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            color: #ef4444;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fb923c, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: #9ca3af;
+            line-height: 1.75;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: white;
+            background: #ea580c;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(234, 88, 12, 0.5);
+        }
+
+        .button:hover {
+            background: #c2410c;
+            box-shadow: 0 0 30px rgba(234, 88, 12, 0.7);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
-    <h1>User Not Found</h1>
-    The user you are searching for does not exist. Please check the username and try again.
+    <div class="glow"></div>
+    <div class="container">
+        <div class="icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                <line stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="18" y1="6" x2="6" y2="18"></line>
+            </svg>
+        </div>
+        <h1>User Not Found</h1>
+        <p>The user you are searching for does not exist. Please check the username and try again.</p>
+        <a href="/" class="button">Go to Home</a>
+    </div>
 </body>
 </html>

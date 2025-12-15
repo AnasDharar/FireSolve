@@ -1,60 +1,142 @@
-{%extends 'base.html'%}
-{%block content%}
-<style>
-    label{
-        color: aliceblue;
-    }
-</style>
-<div class="flex min-h-screen justify-center items-center">
-  <div class="card bg-orange-400 w-96 shadow-sm">
-    <div class="card-body">
-      <h2 class="card-title text-xl">Edit Profile</h2>
-      <p>Update your profile information below:</p>
-        <form method="POST" action="{% url 'edit' user.username %}" class="space-y-4">
-            {% if messages %}
-                <div class="alert alert-error">
-                    {% for message in messages %}
-                        <p>{{ message }}</p>
-                    {% endfor %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="min-h-screen bg-[#0a0a0a] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-[#0a0a0a] to-black text-white font-gabarito relative overflow-hidden flex items-center justify-center py-20 px-4">
+
+    <div class="absolute top-0 left-0 -translate-x-1/2 w-3/4 h-[500px] bg-orange-600/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+    <div class="absolute bottom-0 right-0 translate-x-1/2 w-3/4 h-[500px] bg-red-600/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+    <div class="relative z-10 w-full max-w-5xl">
+        
+        <div class="mb-8 text-center md:text-left">
+            <h2 class="font-instrument-serif text-4xl md:text-5xl font-bold text-white">Account Settings</h2>
+            <p class="text-gray-400 mt-2">Manage your personal details and coding profiles.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1">
+                <div class="h-full bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 flex flex-col items-center text-center shadow-xl">
+                    <div class="relative group">
+                        <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-orange-500 to-red-600 p-[2px] shadow-[0_0_20px_rgba(234,88,12,0.3)] mb-4">
+                            <div class="w-full h-full rounded-full bg-black flex items-center justify-center overflow-hidden">
+                                <span class="font-instrument-serif text-5xl font-bold text-white uppercase">
+                                    {{ user.username|slice:":1" }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 right-2 w-4 h-4 bg-green-500 rounded-full border-2 border-black"></div>
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-white mb-1">@{{ user.username }}</h3>
+                    <p class="text-gray-500 text-sm mb-6">{{ user.email }}</p>
+
+                    <div class="w-full h-px bg-white/10 mb-6"></div>
+
+                    <div class="w-full space-y-3">
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-400">Account Status</span>
+                            <span class="text-green-400 bg-green-500/10 px-2 py-1 rounded text-xs border border-green-500/20">Active</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <span class="text-gray-400">Date Joined</span>
+                            <span class="text-white">{{ user.date_joined|date:"M Y" }}</span>
+                        </div>
+                    </div>
                 </div>
-            {% endif %}
-            {% csrf_token %}
-            <div class="form-group">
+            </div>
 
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="first_name" id="username" placeholder="First Name" value="{{ user.first_name }}" required>
-            </div>
-            <div class="form-group">
+            <div class="lg:col-span-2">
+                <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 shadow-xl">
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-200 flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                            <span>{{ message }}</span>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
 
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="last_name" id="username" placeholder="Last Name" value="{{ user.last_name }}" required>
-            </div>
-            <div class="form-group">
+                    <form method="POST" action="{% url 'edit' user.username %}" class="space-y-8">
+                        {% csrf_token %}
 
-                <input type="email" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="email" id="email" placeholder="Email" value="{{ user.email }}" required>
+                        <div>
+                            <h4 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                                <span class="w-1 h-6 bg-orange-500 rounded-full"></span>
+                                Personal Information
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="group">
+                                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-orange-500 transition-colors">First Name</label>
+                                    <input type="text" name="first_name" value="{{ user.first_name }}" required
+                                        class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300">
+                                </div>
+                                <div class="group">
+                                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-orange-500 transition-colors">Last Name</label>
+                                    <input type="text" name="last_name" value="{{ user.last_name }}" required
+                                        class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300">
+                                </div>
+                                <div class="group md:col-span-2">
+                                    <label class="block text-sm text-gray-400 mb-2 group-focus-within:text-orange-500 transition-colors">Email Address</label>
+                                    <input type="email" name="email" value="{{ user.email }}" required
+                                        class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+                        <div>
+                            <h4 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                                <span class="w-1 h-6 bg-orange-500 rounded-full"></span>
+                                Coding Platforms
+                            </h4>
+                            <p class="text-sm text-gray-500 mb-6">Connect your profiles to track your streaks across platforms.</p>
+                            
+                            <div class="space-y-5">
+                                <div class="group relative">
+                                    <div class="absolute left-4 top-3.5 text-gray-500">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:text-orange-500 transition-all"><path d="M12 2L1 21h22L12 2zm0 3.45l8.27 14.3H3.73L12 5.45z"/></svg>
+                                    </div>
+                                    <input type="text" name="codechef_id" placeholder="CodeChef Handle" value="{{ user.codechef_id|default:'' }}"
+                                        class="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300">
+                                </div>
+
+                                <div class="group relative">
+                                    <div class="absolute left-4 top-3.5 text-gray-500">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:text-blue-500 transition-all"><path d="M4.5 7.5A1.5 1.5 0 016 9v9a1.5 1.5 0 01-3 0V9a1.5 1.5 0 011.5-1.5zm7.5-4.5A1.5 1.5 0 0113.5 4.5v13.5a1.5 1.5 0 01-3 0V4.5a1.5 1.5 0 011.5-1.5zm7.5 7.5a1.5 1.5 0 011.5 1.5V18a1.5 1.5 0 01-3 0v-6a1.5 1.5 0 011.5-1.5z"/></svg>
+                                    </div>
+                                    <input type="text" name="codeforces_id" placeholder="CodeForces Handle" value="{{ user.codeforces_id|default:'' }}"
+                                        class="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300">
+                                </div>
+
+                                <div class="group relative">
+                                    <div class="absolute left-4 top-3.5 text-gray-500">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 opacity-50 group-hover:opacity-100 group-hover:text-yellow-500 transition-all"><path d="M16.1 11.45c-.27-.66-1.12-1.35-2.07-1.74-.9-.37-1.84-.23-2.33.26-.2.2-.28.5-.2.78.34 1.14 1.94 1.74 2.89 2.12 1.35.54 2.15 1.15 2.15 2.25 0 1.25-.97 2.27-2.27 2.27H9.84c-1.3 0-2.35-1.05-2.35-2.35 0-.58.2-1.12.54-1.54l-1.3-1.3c-.63.78-1.01 1.76-1.01 2.84 0 2.41 1.96 4.37 4.37 4.37h4.43c2.41 0 4.37-1.96 4.37-4.37 0-1.63-.88-3.07-2.2-3.88l-1.38 1.48c.55.35.91.95.91 1.63 0 1.1-.9 2-2 2h-4.43c-1.1 0-2-.9-2-2 0-1.1.9-2 2-2 .06 0 .11 0 .17.01l1.41-1.51c-3.14-.14-5.69-2.73-5.69-5.91 0-3.27 2.66-5.93 5.93-5.93 3.27 0 5.93 2.66 5.93 5.93 0 .78-.15 1.52-.42 2.2l-1.55-.91z"/></svg>
+                                    </div>
+                                    <input type="text" name="leetcode_id" placeholder="LeetCode Handle" value="{{ user.leetcode_id|default:'' }}"
+                                        class="w-full bg-black/40 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all duration-300">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex items-center justify-end gap-4">
+                            <button type="reset" class="px-6 py-3 text-gray-400 hover:text-white transition-colors font-medium">Reset</button>
+                            <button type="submit" 
+                                class="inline-flex items-center justify-center px-8 py-3 text-base font-bold text-white transition-all duration-200 bg-orange-600 rounded-xl hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 shadow-[0_0_20px_rgba(234,88,12,0.4)] hover:shadow-[0_0_30px_rgba(234,88,12,0.6)] hover:-translate-y-0.5">
+                                Save Changes
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                {% if not user.codechef_id %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codechef_id" id="codechef_id" placeholder="Codechef ID">
-                {% else %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codechef_id" id="codechef_id" placeholder="Codechef ID" value="{{ user.codechef_id }}" required>
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {% if not user.codeforces_id %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codeforces_id" id="codeforces_id" placeholder="Codeforces ID">
-                {% else %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="codeforces_id" id="codeforces_id" placeholder="Codeforces ID" value="{{ user.codeforces_id }}" required>
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {% if not user.leetcode_id %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="leetcode_id" id="leetcode_id" placeholder="Leetcode ID">
-                {% else %}
-                <input type="text" class="input input-bordered bg-orange-500 shadow-sm shadow-gray-700 w-full p-2 rounded-lg" name="leetcode_id" id="leetcode_id" placeholder="Leetcode ID" value="{{ user.leetcode_id }}" required>
-                {% endif %}
-            </div>
-            <input class="btn btn-success shadow-sm shadow-orange-800" type="submit" value="Update Profile">
-            </form>
+        </div>
     </div>
-  </div>
 </div>
-{%endblock content%}
+{% endblock content %}

@@ -1,121 +1,156 @@
-{%extends 'base.html'%} {%block content%}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Message Modal -->
 {% if messages %}
 <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">
+  <div class="relative bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 max-w-md">
+    <h3 class="text-lg font-bold text-white mb-4">
       {% for message in messages %}
       {{ message }}
       {% endfor %}
     </h3>
     <div class="modal-action">
       <form method="dialog">
-        <button class="btn btn-error">Close</button>
+        <button class="px-6 py-3 text-white bg-orange-600 rounded-xl hover:bg-orange-700 transition-all duration-300">Close</button>
       </form>
     </div>
   </div>
 </dialog>
 {% endif %}
 
-<div class="flex md:flex-row flex-col text-white text-1.5xl bg-gray-900 min-h-screen">
-  <div class="flex-8/12 flex flex-col items-center p-4 m-4 bg-gray-800 rounded-lg">
-    <h1 class="md:text-4xl text-xl font-bold mb-4">{{platform}} POTD</h1>
-    {% if alreadydone %}
-    <div class="flex p-4 flex-col md:flex-row w-full items-center md:text-2xl text-md bg-green-700 rounded-lg shadow-lg gap-4">
-    {% endif %}
-    {% if not alreadydone %}
-    <div class="flex p-4 flex-col md:flex-row w-full items-center md:text-2xl text-md bg-gray-500 rounded-lg shadow-lg gap-4">
-    {% endif %}
-    {% if potd == None %}
-    <div class="">No POTD assigned for today</div>
-      <div class="md:ml-auto gap-4 flex">
-        <a href="#" target="_blank" class="btn btn-error md:mx-3 w-auto">
-  View Problem
-</a>
-<form method="" action="">
-  {% csrf_token %}
-  <input type="hidden" name="platform_id" value="{{ id }}">
-  <button type="submit" class="btn btn-success">Refresh</button>
-</form>
-      </div>
-    {% else %}
-      <div class="">Today's Problem: {{ potd.title }}</div>
-      <div class="md:ml-auto gap-4 flex">
-        <a href="{{ url }}{{ potd.problem_id }}" target="_blank" class="btn btn-error md:mx-3 w-auto">
-  View Problem
-</a>
-<form method="POST" action="{% url 'refresh_potd_status' %}">
-  {% csrf_token %}
-  <input type="hidden" name="platform_id" value="{{ id }}">
-  <button type="submit" class="btn btn-success">Refresh</button>
-</form>
-      </div>
-      {% endif %}
-    </div>
+<div class="min-h-screen bg-[#0a0a0a] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-[#0a0a0a] to-black text-white font-gabarito overflow-hidden">
+  
+  <div class="relative py-8 px-4">
+    <!-- Glowing background effect -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 h-96 bg-orange-600/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Main Content -->
+        <div class="lg:col-span-2 space-y-6">
+          
+          <!-- Header -->
+          <div class="text-center lg:text-left">
+            <h1 class="font-instrument-serif text-4xl md:text-5xl font-bold mb-2">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">{{platform}}</span> POTD
+            </h1>
+          </div>
 
-    <div class="flex flex-col justify-center w-full">
-      <div class="flex items-center p-4 w-full md:text-2xl text-md">Past problems</div>
-      <div class="flex flex-col w-full">
-        {% for prob in past_problems %}
-        <div class="flex items-center md:flex-row flex-col w-full p-4 border-b-1">
-          <div class="flex md:p-4 text-lg">
-            {{ prob.title }}
+          <!-- Today's Problem Card -->
+          {% if alreadydone %}
+          <div class="relative bg-green-500/10 backdrop-blur-md border border-green-500/30 rounded-3xl p-6 shadow-2xl">
+          {% else %}
+          <div class="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-2xl">
+          {% endif %}
+            {% if potd == None %}
+              <div class="text-center py-8">
+                <p class="text-xl text-gray-400 mb-6">No POTD assigned for today</p>
+                <form method="" action="" class="inline-block">
+                  {% csrf_token %}
+                  <input type="hidden" name="platform_id" value="{{ id }}">
+                  <button type="submit" class="px-6 py-3 text-white bg-orange-600 rounded-xl hover:bg-orange-700 transition-all duration-300">
+                    Refresh
+                  </button>
+                </form>
+              </div>
+            {% else %}
+              <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex-1">
+                  <p class="text-sm text-gray-400 mb-1">Today's Problem</p>
+                  <h2 class="text-2xl font-bold">{{ potd.title }}</h2>
+                </div>
+                <div class="flex gap-3">
+                  <a href="{{ url }}{{ potd.problem_id }}" target="_blank" class="px-6 py-3 text-white bg-orange-600 rounded-xl hover:bg-orange-700 transition-all duration-300 shadow-[0_0_15px_rgba(234,88,12,0.3)]">
+                    View Problem
+                  </a>
+                  <form method="POST" action="{% url 'refresh_potd_status' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="platform_id" value="{{ id }}">
+                    <button type="submit" class="px-6 py-3 text-white bg-green-600 rounded-xl hover:bg-green-700 transition-all duration-300">
+                      Refresh
+                    </button>
+                  </form>
+                </div>
+              </div>
+            {% endif %}
           </div>
-          <div class="md:ml-auto flex md:flex-row flex-col items-center">
-            <div class="flex md:p-4 p-2 md:text-lg text-sm">
-              {{ prob.assigned_date }}
-            </div>
-            <div class="flex">
-            <a href="{{ url }}{{ prob.problem_id }}" target="_blank" class="btn bg-orange-600 md:mx-3 mx-1">
-                View problem
-            </a>
-            <a href="{{ prob.solutionurl }}" class="btn btn-outline md:mx-3 mx-1">
-                View Solution
-            </a>
+
+          <!-- Past Problems -->
+          <div class="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-2xl">
+            <h2 class="text-2xl font-bold mb-6">Past Problems</h2>
+            
+            <div class="space-y-4">
+              {% for prob in past_problems %}
+              <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-white/10 last:border-b-0">
+                <div class="flex-1">
+                  <h3 class="text-lg font-semibold mb-1">{{ prob.title }}</h3>
+                  <p class="text-sm text-gray-400">{{ prob.assigned_date }}</p>
+                </div>
+                <div class="flex gap-2">
+                  <a href="{{ url }}{{ prob.problem_id }}" target="_blank" class="px-4 py-2 text-white bg-orange-600 rounded-lg hover:bg-orange-700 transition-all duration-300 text-sm">
+                    View Problem
+                  </a>
+                  <a href="{{ prob.solutionurl }}" target="_blank" class="px-4 py-2 text-white border border-white/20 rounded-lg hover:bg-white/10 transition-all duration-300 text-sm">
+                    Solution
+                  </a>
+                </div>
+              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
-        {% endfor %}
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 shadow-2xl sticky top-6">
+            
+            <!-- Platform Info -->
+            <div class="mb-6">
+              <h2 class="text-3xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
+                {{ platform }}
+              </h2>
+              <div class="text-sm text-gray-300 space-y-2">
+                {% if id == 1 %}
+                <p><span class="text-orange-400 font-semibold">{{platform}} Streak:</span> {{user_profile.codechef_streak}}</p>
+                <p><span class="text-orange-400 font-semibold">Ultimate Streak:</span> {{user_profile.ultimate_streak}}</p>
+                {% elif id == 2 %}
+                <p><span class="text-blue-400 font-semibold">{{platform}} Streak:</span> {{user_profile.codeforces_streak}}</p>
+                <p><span class="text-blue-400 font-semibold">Ultimate Streak:</span> {{user_profile.ultimate_streak}}</p>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div>
+              <h3 class="text-2xl font-bold mb-4">Leaderboard</h3>
+              
+              <div class="space-y-3">
+                {% for user in leaderboard %}
+                <div class="flex items-center gap-3 p-3 rounded-xl {% if forloop.counter == 1 %}bg-yellow-500/10 border border-yellow-500/30{% elif forloop.counter == 2 %}bg-gray-400/10 border border-gray-400/30{% elif forloop.counter == 3 %}bg-orange-700/10 border border-orange-700/30{% else %}bg-white/5 border border-white/10{% endif %}">
+                  <div class="flex-shrink-0 w-8 text-center font-bold {% if forloop.counter == 1 %}text-yellow-400{% elif forloop.counter == 2 %}text-gray-400{% elif forloop.counter == 3 %}text-orange-700{% else %}text-white{% endif %}">
+                    {{ forloop.counter }}
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-semibold truncate {% if forloop.counter <= 3 %}{% if forloop.counter == 1 %}text-yellow-400{% elif forloop.counter == 2 %}text-gray-400{% else %}text-orange-700{% endif %}{% else %}text-white{% endif %}">
+                      {{ user.user.username }}
+                    </p>
+                    <p class="text-xs text-gray-400">{{ user.total_solved }} solved</p>
+                  </div>
+                  <a href="{% url 'profile' user.user.username %}" class="flex-shrink-0 px-3 py-1 text-xs text-white border border-white/20 rounded-lg hover:bg-white/10 transition-all duration-300">
+                    View
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="flex-4/12 flex flex-col bg-gray-800 m-4 p-4 rounded-lg">
-    <h1 class="text-blue-400 text-2xl font-bold mb-4">{{ platform }}</h1>
-    <h3 class="text-white mb-4">
-      {% if id == 1 %}
-      {{platform}} Streak: {{user_profile.codechef_streak}} |
-      Ultimate Streak: {{user_profile.ultimate_streak}}
-      {% elif id == 2 %}
-      {{platform}} Streak: {{user_profile.codeforces_streak}} |
-      Ultimate Streak: {{user_profile.ultimate_streak}}
-      {% endif %}
-    </h3>
-    <div class="font-gabarito text-white font-bold text-4xl m-3 ">Leaderboard</div>
-        <div class="flex flex-col w-full">
-            {% for user in leaderboard %}
-            <div class="flex items-center ml-4 pb-2 mb-2 mr-4 border-b-1 border-gray-300">
-                {% if forloop.counter == 1 %}
-                <div class="flex-1 font-bold text-lg text-yellow-400">{{ forloop.counter }}</div>
-                <div class="flex-2 font-bold text-lg text-yellow-400">{{ user.user.username }}</div>
-                <div class="flex-1 font-bold text-lg text-yellow-400">{{ user.total_solved }} solved</div>
-                {% elif forloop.counter == 2 %}
-                <div class="flex-1 font-bold text-lg text-gray-400">{{ forloop.counter }}</div>
-                <div class="flex-2 font-bold text-lg text-gray-400">{{ user.user.username }}</div>
-                <div class="flex-1 font-bold text-lg text-gray-400">{{ user.total_solved }} solved</div>
-                {% elif forloop.counter == 3 %}
-                <div class="flex-1 font-bold text-lg text-yellow-700">{{ forloop.counter }}</div>
-                <div class="flex-2 font-bold text-lg text-yellow-700">{{ user.user.username }}</div>
-                <div class="flex-1 font-bold text-lg text-yellow-700">{{ user.total_solved }} solved</div>
-                {% else %}
-                <div class="flex-1 text-white">{{ forloop.counter }}</div>
-                <div class="flex-2">{{ user.user.username }}</div>
-                <div class="flex-1">{{ user.total_solved }} solved</div>
-                {% endif %}
-                <div class="flex-1">
-                    <a href="{% url 'profile' user.user.username %}" class="btn text-blue-400">View</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
   </div>
 </div>
 
@@ -127,4 +162,5 @@
     }
   };
 </script>
-{%endblock content%}
+
+{% endblock %}
